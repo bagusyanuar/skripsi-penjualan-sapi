@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    meta name="csrf-token" content="{{csrf_token()}}">
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -16,10 +16,16 @@
           rel="stylesheet"/>
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet" />
     <title>Penjualan Sapi</title>
     @yield('css')
 </head>
 <body>
+<div class="nav-wrapper shadow-sm">
+    <a class="nav-brand"  href="#">
+        <img src="{{ asset('/assets/image/logo.png') }}" alt="brand-image">
+    </a>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
