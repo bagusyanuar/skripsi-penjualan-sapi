@@ -25,6 +25,20 @@
     <a class="nav-brand"  href="#">
         <img src="{{ asset('/assets/image/logo.png') }}" alt="brand-image">
     </a>
+    <div class="nav-link-container">
+        <a href="#" class="nav-link-item active">Beranda</a>
+        <a href="#" class="nav-link-item">Pilihan Sapi</a>
+        <a href="#" class="nav-link-item">Tentang Kami</a>
+        <a href="#" class="nav-link-item">Kontak</a>
+    </div>
+    <div class="nav-menu-container">
+        <a href="#" class="nav-menu-item">
+            <i class='bx bx-user'></i>
+        </a>
+    </div>
+</div>
+<div class="main-content">
+    @yield('content')
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
