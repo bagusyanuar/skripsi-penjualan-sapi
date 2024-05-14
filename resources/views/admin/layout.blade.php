@@ -29,6 +29,28 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <aside class="main-sidebar sidebar-dark-primary custom-sidebar">
     <div class="sidebar">
+        <div class="sidebar-brand-container">
+            <a href="#" class="sidebar-brand">
+                <img src="{{ asset('/assets/image/logo.png') }}" alt="brand-image">
+                <p class="color-dark">Heli Farm</p>
+            </a>
+        </div>
+        <ul class="nav nav-sidebar nav-pills flex-column" style="gap: 0.25rem">
+            <li class="nav-item">
+                <a href="#"
+                   class="nav-link d-flex align-items-center sidebar-item active">
+                    <i class="bx bxs-dashboard me-2"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#"
+                   class="nav-link d-flex align-items-center sidebar-item">
+                    <i class="bx bxs-dashboard me-2"></i>
+                    <p>Product</p>
+                </a>
+            </li>
+        </ul>
     </div>
 </aside>
 @yield('content')
