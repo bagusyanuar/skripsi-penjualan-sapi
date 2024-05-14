@@ -18,10 +18,21 @@
           rel="stylesheet"/>
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
-    <link href="{{ asset('/css/style.admin.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('/adminlte/css/adminlte.min.css')}}">
+    <link href="{{ asset('/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/style.admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/sweetalert2.css') }}" rel="stylesheet">
+    <script src="{{ asset('/js/sweetalert2.min.js')}}"></script>
     <title>Halaman Admin | Heli Farm</title>
+    @yield('css')
 </head>
-<body>
+<body class="hold-transition sidebar-mini layout-fixed">
+<aside class="main-sidebar sidebar-dark-primary custom-sidebar">
+    <div class="sidebar">
+    </div>
+</aside>
+@yield('content')
+
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -31,7 +42,10 @@
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="{{ asset('/bootstrap/js/bootstrap.js') }}"></script>
+<script src="{{ asset ('/adminlte/js/adminlte.js') }}"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+@yield('js')
 </body>
 </html>

@@ -29,14 +29,16 @@
         <form method="post" class="w-100">
             @csrf
             <div class="form-login">
-                <div class="w-100">
-                    <label for="username" class="form-label d-none"></label>
-                    <input type="text" placeholder="username" class="form-control custom-form-control w-100" id="username"
-                           name="username" aria-describedby="emailHelp">
+                <label for="email" class="form-label d-none"></label>
+                <div class="text-group-container">
+                    <i class='bx bx-envelope'></i>
+                    <input type="text" placeholder="email" class="text-group-input" id="email"
+                           name="email" aria-describedby="emailHelp">
                 </div>
-                <div class="w-100">
-                    <label for="password" class="form-label d-none"></label>
-                    <input type="password" placeholder="password" class="form-control custom-form-control"
+                <label for="password" class="form-label d-none"></label>
+                <div class="text-group-container">
+                    <i class='bx bx-lock-alt'></i>
+                    <input type="password" placeholder="password" class="text-group-input"
                            id="password" name="password" aria-describedby="emailHelp">
                 </div>
                 <div class="w-100 d-flex justify-content-end align-items-center">
