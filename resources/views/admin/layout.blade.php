@@ -27,6 +27,20 @@
     @yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+<nav class="main-header navbar navbar-expand custom-navbar">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link navbar-link-item" data-widget="pushmenu" href="#" role="button">
+                <i class='bx bx-menu'></i>
+            </a>
+        </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a href="#" class="nav-link navbar-link-item">Logout</a>
+        </li>
+    </ul>
+</nav>
 <aside class="main-sidebar sidebar-dark-primary custom-sidebar">
     <div class="sidebar">
         <div class="sidebar-brand-container">
@@ -37,23 +51,26 @@
         </div>
         <ul class="nav nav-sidebar nav-pills flex-column" style="gap: 0.25rem">
             <li class="nav-item">
-                <a href="#"
-                   class="nav-link d-flex align-items-center sidebar-item active">
-                    <i class="bx bxs-dashboard me-2"></i>
+                <a href="{{ route('admin.dashboard') }}"
+                   class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/dashboard*') ? 'active' : '' }}">
+                    <i class="bx bxs-dashboard"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#"
-                   class="nav-link d-flex align-items-center sidebar-item">
-                    <i class="bx bxs-dashboard me-2"></i>
+                <a href="{{ route('admin.product') }}"
+                   class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/product*') ? 'active' : '' }}">
+                    <i class='bx bxs-component'></i>
                     <p>Product</p>
                 </a>
             </li>
         </ul>
     </div>
 </aside>
-@yield('content')
+<div class="content-wrapper p-3">
+    @yield('content')
+</div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
