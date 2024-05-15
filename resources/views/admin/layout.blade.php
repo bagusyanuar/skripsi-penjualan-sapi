@@ -49,25 +49,34 @@
                 <p class="color-dark">Heli Farm</p>
             </a>
         </div>
-        <ul class="nav nav-sidebar nav-pills flex-column" style="gap: 0.25rem">
-            <li class="nav-item">
-                <a href="{{ route('admin.dashboard') }}"
-                   class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/dashboard*') ? 'active' : '' }}">
-                    <i class="bx bxs-dashboard"></i>
-                    <p>Dashboard</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.product') }}"
-                   class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/product*') ? 'active' : '' }}">
-                    <i class='bx bxs-component'></i>
-                    <p>Product</p>
-                </a>
-            </li>
-        </ul>
+        <div class="sidebar-item-container">
+            <ul class="nav nav-sidebar nav-pills flex-column" style="gap: 0.25rem">
+                <li class="nav-item">
+                    <a href="{{ route('admin.dashboard') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/dashboard*') ? 'active' : '' }}">
+                        <i class="bx bxs-dashboard"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.product') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/product*') ? 'active' : '' }}">
+                        <i class='bx bxs-component'></i>
+                        <p>Product</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.product') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/transaction*') ? 'active' : '' }}">
+                        <i class='bx bx-shopping-bag'></i>
+                        <p>Transaction</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </aside>
-<div class="content-wrapper p-3">
+<div class="content-wrapper p-4">
     @yield('content')
 </div>
 

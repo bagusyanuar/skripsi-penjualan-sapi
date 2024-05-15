@@ -164,6 +164,7 @@ body {
 .custom-sidebar {
     background-color: white !important;
     border-right: 1px solid var(--light);
+    z-index: 1060 !important;
 }
 
 .sidebar-brand-container {
@@ -192,12 +193,19 @@ body {
     font-weight: 600;
 }
 
+.sidebar-item-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+}
+
 .sidebar-item {
     color: color-mix(in srgb, white 20%, var(--dark)) !important;
     border-radius: 10px !important;
     padding-top: 12px !important;
     padding-bottom: 12px !important;
     transition: all ease-in-out 200ms;
+    font-weight: 500;
 }
 
 .sidebar-item.active {
@@ -234,7 +242,7 @@ body {
 
 .card-content {
     background-color: white;
-    padding: 1.25rem 1.5rem;
+    padding: 1.5rem 1.75rem;
     border-radius: 12px;
     width: 100%;
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
