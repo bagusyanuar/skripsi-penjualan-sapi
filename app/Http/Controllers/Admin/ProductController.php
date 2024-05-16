@@ -36,6 +36,13 @@ class ProductController extends CustomController
         return view('admin.product.add');
     }
 
+    public function edit($id)
+    {
+        $data = Product::with([])
+            ->findOrFail($id);
+        return view('admin.product.edit')->with(['data' => $data]);
+    }
+
     private $rule = [
         'name' => 'required',
         'price' => 'required',

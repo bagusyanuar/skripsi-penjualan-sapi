@@ -17,29 +17,19 @@
         <table id="table-data" class="display table w-100">
             <thead>
             <tr>
-                <th width="5%" class="text-center">#</th>
-                <th width="15%">Gambar</th>
+                <th width="5%" class="text-center"></th>
+                <th width="15%" class="text-center">Gambar</th>
                 <th>Nama</th>
                 <th width="12%" class="text-end">Harga (Rp.)</th>
-                <th width="15%" class="text-center">Aksi</th>
+                <th width="12%" class="text-center">Aksi</th>
             </tr>
             </thead>
-            {{--            <tbody>--}}
-            {{--            @foreach($data as $datum)--}}
-            {{--                <tr>--}}
-            {{--                    <td width="5%" class="text-center middle-header">{{ $loop->index + 1 }}</td>--}}
-            {{--                    <td class="middle-header">{{ $datum->nama }}</td>--}}
-            {{--                    <td class="middle-header">{{ $datum->nama }}</td>--}}
-            {{--                    <td class="middle-header">{{ $datum->nama }}</td>--}}
-            {{--                    <td class="middle-header">{{ $datum->nama }}</td>--}}
-            {{--                </tr>--}}
-            {{--            @endforeach--}}
-            {{--            </tbody>--}}
         </table>
     </div>
 @endsection
 
 @section('js')
+    <script src="{{ asset('/js/helper.js') }}"></script>
     <script>
         var path = '/{{ request()->path() }}';
         var table;
@@ -57,13 +47,13 @@
                 responsive: true,
                 paging: true,
                 "fnDrawCallback": function (setting) {
-                    expandRow();
-                    // eventDelete();
+                    // expandRow();
+                    eventDelete();
                     // eventDetail();
                 },
                 columns: [
                     {
-                        className: 'dt-control',
+                        className: 'dt-control middle-header',
                         orderable: false,
                         data: null,
                         render: function () {
@@ -71,20 +61,41 @@
                         }
                     },
                     {
+                        data: 'gambar',
+                        orderable: false,
+                        className: 'middle-header text-center',
+                        render: function (data) {
+                            if (data !== null) {
+                                return '<div class="w-100 d-flex justify-content-center">' +
+                                    '<a href="' + data + '" target="_blank" class="box-product-image">' +
+                                    '<img src="' + data + '" alt="product-image" />' +
+                                    '</a>' +
+                                    '</div>';
+                            }
+                            return '-';
+                        }
+                    },
+                    {
                         data: 'nama',
                         className: 'middle-header',
                     },
                     {
-                        data: 'nama'
-                    },
-                    {
                         data: 'harga',
-                        className: 'text-right middle-header'
+                        className: 'text-right middle-header',
+                        render: function (data) {
+                            return data.toLocaleString('id-ID');
+                        }
                     },
                     {
                         data: null,
-                        render: function () {
-                            return '-';
+                        className: 'text-center middle-header',
+                        render: function (data) {
+                            let id = data['id'];
+                            let urlEdit = path + '/' + id + '/edit';
+                            return '<div class="w-100 d-flex justify-content-center align-items-center gap-1">' +
+                                '<a href="#" class="btn-table-action-delete" data-id="' + id + '"><i class="bx bx-trash"></i></a>' +
+                                '<a href="' + urlEdit + '" class="btn-table-action-edit"><i class="bx bx-edit-alt"></i></a>' +
+                                '</div>';
                         }
                     }
                 ],
@@ -122,6 +133,16 @@
             return (
                 '<div>' + elString[0].nodeValue + '</div>'
             );
+        }
+
+        function eventDelete() {
+            $('.btn-table-action-delete').on('click', function (e) {
+                e.preventDefault();
+                let id = this.dataset.id;
+                AlertConfirm('Konfirmasi', 'Apakah anda yakin ingin menghapus data?', function () {
+                    // deleteHandler(id);
+                })
+            })
         }
 
         $(document).ready(function () {
