@@ -24,6 +24,6 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'product'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('admin.product');
-        Route::get('/add', [\App\Http\Controllers\Admin\ProductController::class, 'add'])->name('admin.product.add');
+        Route::match(['post', 'get'],'/add', [\App\Http\Controllers\Admin\ProductController::class, 'add'])->name('admin.product.add');
     });
 });

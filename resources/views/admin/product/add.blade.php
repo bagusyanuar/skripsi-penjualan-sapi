@@ -6,25 +6,28 @@
         <p class="content-sub-title">Create new data product</p>
     </div>
     <div class="card-content">
-        <div class="w-100 mb-3">
-            <label for="name" class="form-label input-label">Product Name</label>
-            <input type="text" placeholder="product name" class="text-input" id="name"
-                   name="name" aria-describedby="emailHelp">
-        </div>
-        <div class="w-100 mb-3">
-            <label for="price" class="form-label input-label">Product Price (Rp.)</label>
-            <input type="number" value="0" placeholder="product price" class="text-input" id="price"
-                   name="price" aria-describedby="emailHelp">
-        </div>
-        <div class="w-100 mb-3">
-            <label for="description" class="form-label input-label">Description</label>
-            <textarea rows="5" placeholder="Product Description" class="text-input" id="description"
-                      name="description"></textarea>
-        </div>
-        <div class="w-100">
-            <label for="document-dropzone" class="form-label input-label">Product Picture</label>
-            <div class="w-100 needsclick dropzone mb-3" id="document-dropzone"></div>
-        </div>
+        <form method="post" id="form-data">
+            @csrf
+            <div class="w-100 mb-3">
+                <label for="name" class="form-label input-label">Product Name</label>
+                <input type="text" placeholder="product name" class="text-input" id="name"
+                       name="name" aria-describedby="emailHelp">
+            </div>
+            <div class="w-100 mb-3">
+                <label for="price" class="form-label input-label">Product Price (Rp.)</label>
+                <input type="number" value="0" placeholder="product price" class="text-input" id="price"
+                       name="price" aria-describedby="emailHelp">
+            </div>
+            <div class="w-100 mb-3">
+                <label for="description" class="form-label input-label">Description</label>
+                <textarea rows="5" placeholder="Product Description" class="text-input" id="description"
+                          name="description"></textarea>
+            </div>
+            <div class="w-100">
+                <label for="document-dropzone" class="form-label input-label">Product Picture</label>
+                <div class="w-100 needsclick dropzone mb-3" id="document-dropzone"></div>
+            </div>
+        </form>
         <hr class="custom-divider"/>
         <div class="d-flex align-items-center justify-content-end w-100">
             <a href="#" class="btn-add" id="btn-save">
@@ -40,6 +43,7 @@
 @endsection
 
 @section('js')
+    <script src="{{ asset('/js/helper.js') }}"></script>
     <script src="{{ asset('/js/dropzone.min.js') }}"></script>
     <script>
         var path = '/{{ request()->path() }}';
@@ -154,7 +158,7 @@
                         });
                         if (response['status'] === 422) {
                             const data = response['data'];
-                            convertValidator(data);
+                            // convertValidator(data);
                         }
                     });
 

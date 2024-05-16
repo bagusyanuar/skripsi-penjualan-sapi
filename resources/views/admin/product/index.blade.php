@@ -24,6 +24,17 @@
                 <th width="15%" class="text-center">Aksi</th>
             </tr>
             </thead>
+            <tbody>
+            @foreach($data as $datum)
+                <tr>
+                    <td width="5%" class="text-center middle-header">{{ $loop->index + 1 }}</td>
+                    <td class="middle-header">{{ $datum->nama }}</td>
+                    <td class="middle-header">{{ $datum->nama }}</td>
+                    <td class="middle-header">{{ $datum->nama }}</td>
+                    <td class="middle-header">{{ $datum->nama }}</td>
+                </tr>
+            @endforeach
+            </tbody>
         </table>
     </div>
 @endsection

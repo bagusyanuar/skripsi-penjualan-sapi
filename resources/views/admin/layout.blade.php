@@ -27,6 +27,13 @@
     @yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+<div class="lazy-backdrop" id="overlay-loading">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="spinner-border text-light" role="status">
+        </div>
+        <p class="text-light">Sedang Menyimpan Data...</p>
+    </div>
+</div>
 <nav class="main-header navbar navbar-expand custom-navbar">
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -79,7 +86,6 @@
 <div class="content-wrapper p-4">
     @yield('content')
 </div>
-
 
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
