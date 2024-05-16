@@ -9,18 +9,22 @@
         <form method="post" id="form-data">
             @csrf
             <div class="w-100 mb-3">
-                <label for="name" class="form-label input-label">Product Name</label>
+                <label for="name" class="form-label input-label">Product Name <span
+                        class="color-danger">*</span></label>
                 <input type="text" placeholder="product name" class="text-input" id="name"
-                       name="name" aria-describedby="emailHelp">
+                       name="name">
+                <span id="name-error" class="input-label-error d-none"></span>
             </div>
             <div class="w-100 mb-3">
-                <label for="price" class="form-label input-label">Product Price (Rp.)</label>
+                <label for="price" class="form-label input-label">Product Price (Rp.) <span
+                        class="color-danger">*</span></label>
                 <input type="number" value="0" placeholder="product price" class="text-input" id="price"
-                       name="price" aria-describedby="emailHelp">
+                       name="price">
+                <span id="price-error" class="input-label-error d-none"></span>
             </div>
             <div class="w-100 mb-3">
                 <label for="description" class="form-label input-label">Description</label>
-                <textarea rows="5" placeholder="Product Description" class="text-input" id="description"
+                <textarea rows="6" placeholder="Product Description" class="text-input" id="description"
                           name="description"></textarea>
             </div>
             <div class="w-100">
@@ -40,11 +44,13 @@
 
 @section('css')
     <link href="{{ asset('/css/dropzone.min.css') }}" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endsection
 
 @section('js')
     <script src="{{ asset('/js/helper.js') }}"></script>
     <script src="{{ asset('/js/dropzone.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script>
         var path = '/{{ request()->path() }}';
         var uploadedDocumentMap = {};
@@ -118,9 +124,9 @@
                                                 timer: 700
                                             });
                                             let response = e.responseJSON;
-                                            if (response['status'] === 422) {
+                                            if (response['status'] === 400) {
                                                 const data = response['data'];
-                                                // convertValidator(data);
+                                                validateMessage(data, ['name', 'price']);
                                             }
                                         }
                                     })
@@ -156,9 +162,9 @@
                             icon: 'error',
                             timer: 700
                         });
-                        if (response['status'] === 422) {
+                        if (response['status'] === 400) {
                             const data = response['data'];
-                            // convertValidator(data);
+                            validateMessage(data, ['name', 'price']);
                         }
                     });
 
@@ -172,6 +178,12 @@
         }
 
         $(document).ready(function () {
+            $('#description').summernote({
+                toolbar: [
+                    ['para', ['ul', 'ol']],
+                    ['table', ['table']],
+                ]
+            });
             setupDropzone();
         })
     </script>

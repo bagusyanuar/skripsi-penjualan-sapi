@@ -4,6 +4,7 @@
     --dark: #353535;
     --dark-tint: #8f8f8f;
     --light: #96afb8;
+    --danger: #dc3545;
     --font-small: 0.8em;
     --text-slate-400: rgb(148 163 184);
     --text-slate-500: rgb(100 116 139);
@@ -26,6 +27,10 @@ body {
 
 .color-dark {
     color: var(--dark);
+}
+
+.color-danger {
+    color: var(--danger);
 }
 
 .bottom-space-medium {
@@ -160,7 +165,16 @@ body {
 .input-label {
     font-size: 0.8em;
     color: var(--dark);
+    font-weight: 600 !important;
 }
+
+.input-label-error {
+    font-size: 0.6em;
+    font-weight: 500;
+    color: var(--danger);
+}
+
+
 .custom-sidebar {
     background-color: white !important;
     border-right: 1px solid var(--light);
@@ -322,3 +336,16 @@ body {
     cursor: pointer;
 }
 
+table.dataTable td.dt-control:before {
+    display: none !important;
+    color: rgba(0, 0, 0, 0.5);
+    content: "►";
+}
+
+.dt-control {
+    cursor: pointer;
+}
+
+.middle-header {
+    vertical-align: middle !important;
+}

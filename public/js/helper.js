@@ -58,7 +58,7 @@ function createLoader(text = 'sedang mengunduh data...', height = 600) {
 
 function blockLoading(state) {
     if (state) {
-        $('#overlay-loading').css('display', 'block')
+        $('#overlay-loading').css('display', 'flex')
     } else {
         $('#overlay-loading').css('display', 'none')
     }
@@ -72,7 +72,8 @@ function calculate_days(tgl1, tgl2) {
     return diff_in_time / (1000 * 3600 * 24);
 }
 
-function DataTableGenerator(element, url = '/', col = [], colDef = [], data = function () {}, extConfig = {}) {
+function DataTableGenerator(element, url = '/', col = [], colDef = [], data = function () {
+}, extConfig = {}) {
     let baseConfig = {
         scrollX: true,
         processing: true,
@@ -91,4 +92,19 @@ function DataTableGenerator(element, url = '/', col = [], colDef = [], data = fu
 
 function formatUang(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+function validateMessage(message, target = []) {
+    $.each(target, function (k, v) {
+        let elTarget = $('#' + v + '-error');
+        if (!elTarget.hasClass('d-none')) {
+            elTarget.addClass('d-none');
+        }
+    });
+
+    for (const [key, value] of Object.entries(message)) {
+        let elTarget = $('#' + key + '-error');
+        elTarget.removeClass('d-none');
+        elTarget.html(value[0]);
+    }
 }

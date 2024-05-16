@@ -18,10 +18,14 @@ class ProductController extends CustomController
 
     public function index()
     {
-        $products = Product::with([])
-            ->orderBy('created_at', 'DESC')
-            ->get();
-        return view('admin.product.index')->with(['data' => $products]);
+
+        if ($this->request->ajax()) {
+            $products = Product::with([])
+                ->orderBy('created_at', 'DESC')
+                ->get();
+            return $this->basicDataTables($products);
+        }
+        return view('admin.product.index');
     }
 
     public function add()
