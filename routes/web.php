@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('member.beranda');
-});
+Route::get('/', [\App\Http\Controllers\Member\HomeController::class, 'index'])->name('member.home');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::match(['get', 'post'], '/', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');

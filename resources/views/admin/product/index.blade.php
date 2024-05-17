@@ -88,6 +88,7 @@
                     },
                     {
                         data: null,
+                        orderable: false,
                         className: 'text-center middle-header',
                         render: function (data) {
                             let id = data['id'];
@@ -109,30 +110,34 @@
                 var i = $(this).children();
                 if (row.child.isShown()) {
                     // This row is already open - close it
-                    console.log('close')
                     row.child.hide();
                     tr.removeClass('shown');
                     i.removeClass('bx-minus-circle');
                     i.addClass('bx-plus-circle');
                 } else {
-                    console.log('open')
                     // Open this row
                     row.child(detailElement(row.data())).show();
                     tr.addClass('shown');
                     i.removeClass('bx-plus-circle');
                     i.addClass('bx-minus-circle');
-                    // console.log(tr.closest('i'));
                 }
             });
         }
 
         function detailElement(data) {
-            let a = data['deskripsi'].toString();
-            let elString = $.parseHTML(a);
-            console.log(elString[0].nodeValue);
-            return (
-                '<div>' + elString[0].nodeValue + '</div>'
-            );
+            let description = data['deskripsi'];
+            if (description !== null) {
+                let content = data['deskripsi'].toString();
+                let contentString = $.parseHTML(content);
+                return (
+                    '<div>' + contentString[0].nodeValue + '</div>'
+                );
+            }
+            return  (
+                '<div class="w-100 d-flex justify-content-center align-items-center">' +
+                '<p>Belum ada deskripsi product</p>' +
+                '</div>'
+            )
         }
 
         function eventDelete() {

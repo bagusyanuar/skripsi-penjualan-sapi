@@ -52,6 +52,7 @@
     <script src="{{ asset('/js/dropzone.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script>
+        var indexPath = '{{ route('admin.product') }}';
         var path = '/{{ request()->path() }}';
         var uploadedDocumentMap = {};
         var myDropzone;
@@ -112,7 +113,7 @@
                                                 icon: 'success',
                                                 timer: 700
                                             }).then(() => {
-                                                window.location.reload();
+                                                window.location.href = indexPath;
                                             });
                                         },
                                         error: function (e) {
@@ -150,7 +151,7 @@
                             icon: 'success',
                             timer: 700
                         }).then(() => {
-                            window.location.reload();
+                            window.location.href = indexPath;
                         });
                     });
 

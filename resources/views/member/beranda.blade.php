@@ -23,4 +23,13 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+    <section id="product-section">
+        <div class="w-100 d-flex justify-content-center mb-3">
+            <p class="section-title">Our Products</p>
+        </div>
+        <div class="product-container">
+            <div class="card-product"></div>
+            <div class="card-product"></div>
+        </div>
+    </section>
 @endsection
