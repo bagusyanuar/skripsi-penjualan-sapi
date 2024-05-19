@@ -50,11 +50,15 @@ class ProductController extends CustomController
     private $rule = [
         'name' => 'required',
         'price' => 'required',
+        'age' => 'required',
+        'weight' => 'required',
     ];
 
     private $message = [
         'name.required' => 'kolom nama wajib diisi',
         'price.required' => 'kolom harga wajib diisi',
+        'age.required' => 'kolom umur wajib diisi',
+        'weight.required' => 'kolom berat wajib diisi',
     ];
 
     private function store()
@@ -106,6 +110,8 @@ class ProductController extends CustomController
         $data_request = [
             'nama' => $this->postField('name'),
             'harga' => $this->postField('price'),
+            'berat' => $this->postField('weight'),
+            'age' => $this->postField('age'),
             'deskripsi' => $this->postField('description')
         ];
 

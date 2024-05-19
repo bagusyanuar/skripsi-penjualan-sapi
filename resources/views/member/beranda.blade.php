@@ -27,9 +27,36 @@
         <div class="w-100 d-flex justify-content-center mb-3">
             <p class="section-title">Our Products</p>
         </div>
-        <div class="product-container">
-            <div class="card-product"></div>
-            <div class="card-product"></div>
+        <div class="product-container mb-3">
+            @foreach($products as $product)
+                <div class="card-product" data-id="{{ $product->id }}">
+                    <img src="{{ $product->gambar }}" alt="product-image">
+                    <div class="product-info">
+                        <p class="product-name">{{ $product->nama }}</p>
+                        <p class="product-specification">Usia : {{ $product->umur }} tahun</p>
+                        <p class="product-specification">Berat : {{ $product->berat }} kg</p>
+                        <p class="product-price">Rp.{{ number_format($product->harga, 0, ',', '.') }}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="w-100 d-flex justify-content-center mb-3">
+            <a href="#">See All</a>
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script>
+        function eventProductDetail() {
+            $('.card-product').on('click', function () {
+                let id = this.dataset.id;
+                window.location.href = '/product/' + id;
+            })
+        }
+
+        $(document).ready(function () {
+            eventProductDetail();
+        })
+    </script>
 @endsection

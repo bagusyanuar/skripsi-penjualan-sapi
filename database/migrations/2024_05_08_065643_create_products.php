@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('nama');
             $table->text('gambar')->nullable();
             $table->integer('harga')->default(0);
+            $table->integer('umur')->default(0);
+            $table->integer('berat')->default(0);
             $table->text('deskripsi')->nullable();
             $table->timestamps();
         });

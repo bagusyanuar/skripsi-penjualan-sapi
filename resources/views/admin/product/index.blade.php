@@ -20,8 +20,10 @@
                 <th width="5%" class="text-center"></th>
                 <th width="15%" class="text-center">Gambar</th>
                 <th>Nama</th>
+                <th width="14%" class="text-center">Umur (tahun)</th>
+                <th width="12%" class="text-center">Berat (kg)</th>
                 <th width="12%" class="text-end">Harga (Rp.)</th>
-                <th width="12%" class="text-center">Aksi</th>
+                <th width="10%" class="text-center">Aksi</th>
             </tr>
             </thead>
         </table>
@@ -78,6 +80,20 @@
                     {
                         data: 'nama',
                         className: 'middle-header',
+                    },
+                    {
+                        data: 'umur',
+                        className: 'text-center middle-header',
+                        render: function (data) {
+                            return data.toLocaleString('id-ID');
+                        }
+                    },
+                    {
+                        data: 'berat',
+                        className: 'text-center middle-header',
+                        render: function (data) {
+                            return data.toLocaleString('id-ID');
+                        }
                     },
                     {
                         data: 'harga',

@@ -22,18 +22,19 @@
 </head>
 <body>
 <div class="nav-wrapper shadow-sm">
-    <a class="nav-brand"  href="#">
+    <a class="nav-brand d-flex align-items-center custom-nav-brand"  href="{{ route('member.home') }}">
         <img src="{{ asset('/assets/image/logo.png') }}" alt="brand-image">
+        <p class="mb-0">Heli Farm</p>
     </a>
     <div class="nav-link-container">
-        <a href="#" class="nav-link-item active">Beranda</a>
-        <a href="#" class="nav-link-item">Pilihan Sapi</a>
+        <a href="{{ route('member.home') }}" class="nav-link-item {{ request()->is('/') ? 'active' : '' }}">Beranda</a>
+        <a href="{{ route('member.product') }}" class="nav-link-item {{ request()->is('product*') ? 'active' : '' }}">Pilihan Sapi</a>
         <a href="#" class="nav-link-item">Tentang Kami</a>
         <a href="#" class="nav-link-item">Kontak</a>
     </div>
     <div class="nav-menu-container">
         <a href="#" class="nav-menu-item">
-            <i class='bx bx-user'></i>
+            <i class='bx bx-user' style="font-size: 16px"></i>
         </a>
     </div>
 </div>

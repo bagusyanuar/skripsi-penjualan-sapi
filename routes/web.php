@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\Member\HomeController::class, 'index'])->name('member.home');
+Route::group(['prefix' => 'product'], function (){
+    Route::get('/', [\App\Http\Controllers\Member\ProductController::class, 'index'])->name('member.product');
+    Route::get('/{id}', [\App\Http\Controllers\Member\ProductController::class, 'detail'])->name('member.product.detail');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Route::match(['get', 'post'], '/', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');

@@ -23,6 +23,20 @@
                 <span id="price-error" class="input-label-error d-none"></span>
             </div>
             <div class="w-100 mb-3">
+                <label for="age" class="form-label input-label">Product Age (year) <span
+                        class="color-danger">*</span></label>
+                <input type="number" value="0" placeholder="product age" class="text-input" id="age"
+                       name="age">
+                <span id="age-error" class="input-label-error d-none"></span>
+            </div>
+            <div class="w-100 mb-3">
+                <label for="weight" class="form-label input-label">Product Weight (kg) <span
+                        class="color-danger">*</span></label>
+                <input type="number" value="0" placeholder="product weight" class="text-input" id="weight"
+                       name="weight">
+                <span id="weight-error" class="input-label-error d-none"></span>
+            </div>
+            <div class="w-100 mb-3">
                 <label for="description" class="form-label input-label">Description</label>
                 <textarea rows="6" placeholder="Product Description" class="text-input" id="description"
                           name="description"></textarea>
@@ -52,6 +66,7 @@
     <script src="{{ asset('/js/dropzone.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script>
+        var indexPath = '{{ route('admin.product') }}';
         var path = '/{{ request()->path() }}';
         var uploadedDocumentMap = {};
         var myDropzone;
@@ -112,7 +127,7 @@
                                                 icon: 'success',
                                                 timer: 700
                                             }).then(() => {
-                                                window.location.reload();
+                                                window.location.href = indexPath;
                                             });
                                         },
                                         error: function (e) {
@@ -150,7 +165,7 @@
                             icon: 'success',
                             timer: 700
                         }).then(() => {
-                            window.location.reload();
+                            window.location.href = indexPath;
                         });
                     });
 
