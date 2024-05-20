@@ -10,6 +10,7 @@
     --text-slate-500: rgb(100 116 139);
     --text-slate-600: rgb(71 85 105);
     --card-border: 12px;
+    --bg-accent: #00897A;
 }
 
 body {
@@ -304,6 +305,7 @@ a.nav-brand img{
     width: 380px;
     object-fit: cover;
     object-position: center center;
+    border-radius: 12px;
 }
 
 .product-detail-info-container {
@@ -334,9 +336,9 @@ a.nav-brand img{
 
 .product-detail-action .btn-add-cart {
     width: 100%;
-    background-color: transparent;
-    border: 1px solid var(--bg-primary);
-    color: var(--bg-primary);
+    background-color: var(--bg-accent);
+    border: 1px solid var(--bg-accent);
+    color: white;
     padding: 0.5rem 1.5rem;
     border-radius: 5px;
     text-decoration: none;
@@ -344,11 +346,38 @@ a.nav-brand img{
     align-items: center;
     justify-content: center;
     font-weight: 500;
+    transition: all ease-in-out 200ms;
+}
 
+.product-detail-action .btn-add-cart:hover {
+    background-color: color-mix(in srgb, 10% black, var(--bg-accent));
+    border: 1px solid color-mix(in srgb, 10% black, var(--bg-accent));
+}
+
+.product-detail-action .btn-add-cart i {
+    margin-right: 0.5rem;
 }
 
 .product-detail-action .btn-shop {
     width: 100%;
     background-color: var(--bg-primary);
+    border: 1px solid var(--bg-primary);
     color: var(--dark);
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    transition: all ease-in-out 200ms;
+}
+
+.product-detail-action .btn-shop:hover {
+    background-color: color-mix(in srgb, 10% white, var(--bg-primary));
+    border: 1px solid color-mix(in srgb, 10% white, var(--bg-primary));
+}
+
+.product-detail-action .btn-shop i {
+    margin-right: 0.5rem;
 }

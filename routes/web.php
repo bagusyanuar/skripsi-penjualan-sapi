@@ -19,6 +19,8 @@ Route::group(['prefix' => 'product'], function (){
     Route::get('/{id}', [\App\Http\Controllers\Member\ProductController::class, 'detail'])->name('member.product.detail');
 });
 
+Route::get('/keranjang', [\App\Http\Controllers\Member\CartController::class, 'index'])->name('member.cart');
+
 Route::group(['prefix' => 'admin'], function () {
     Route::match(['get', 'post'], '/', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
 
