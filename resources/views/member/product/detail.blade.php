@@ -22,11 +22,11 @@
             <p class="product-detail-specification">Umur : {{ $product->umur }} (tahun)</p>
             <p class="product-detail-specification mb-3">Berat : {{ $product->berat }} (kg)</p>
             <div class="product-detail-action">
-                <a href="#" class="btn-add-cart">
+                <a href="#" class="btn-add-cart" id="btn-add-cart">
                     <i class='bx bx-cart-alt'></i>
                     <span>Tambah Keranjang</span>
                 </a>
-                <a href="#" class="btn-shop">
+                <a href="#" class="btn-shop" id="btn-shop">
                     <i class='bx bx-shopping-bag'></i>
                     <span>Beli Sekarang</span>
                 </a>
@@ -36,4 +36,12 @@
     <hr class="custom-divider"/>
     <p class="page-title" style="font-size: 1em">Product Description</p>
     <div style="font-size: 0.8em">{!! $product->deskripsi !!}</div>
+@endsection
+
+@section('js')
+    <script src="{{ asset('/js/helper.js') }}"></script>
+    <script>
+
+
+    </script>
 @endsection

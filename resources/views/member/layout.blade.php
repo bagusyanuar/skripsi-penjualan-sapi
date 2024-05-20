@@ -33,7 +33,7 @@
         <a href="#" class="nav-link-item">Kontak</a>
     </div>
     <div class="nav-menu-container">
-        <a href="#" class="nav-menu-item">
+        <a href="{{ route('member.login') }}" class="nav-menu-item">
             <i class='bx bx-user' style="font-size: 16px"></i>
         </a>
     </div>
