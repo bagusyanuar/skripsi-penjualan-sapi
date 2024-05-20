@@ -49,10 +49,10 @@ async function AjaxPost(url, param = {}, onSuccess = function () {
 
 function createLoader(text = 'sedang mengunduh data...', height = 600) {
     return '<div class="d-flex flex-column align-items-center justify-content-center" style="height: ' + height + 'px">' +
-        '<div class="spinner-border text-primary" role="status" "style="color: #117d17;">\n' +
-        '  <span class="sr-only" style="color: #117d17;">Loading...</span>\n' +
+        '<div class="spinner-border" role="status" style="color: var(--bg-primary);">\n' +
+        '  <span class="sr-only" style="color: #117d17;"></span>\n' +
         '</div>' +
-        '<div>' + text + '</div>' +
+        '<div style="color: var(--dark); font-weight: 500;">' + text + '</div>' +
         '</div>';
 }
 
@@ -107,4 +107,22 @@ function validateMessage(message, target = []) {
         elTarget.removeClass('d-none');
         elTarget.html(value[0]);
     }
+}
+
+function debounce(fn, delay) {
+    var timer = null;
+    return function () {
+        var context = this,
+            args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            fn.apply(context, args);
+        }, delay);
+    };
+}
+
+function createEmptyProduct() {
+    return '<div class="d-flex flex-column align-items-center justify-content-center" style="height: ' + 400 + 'px">' +
+        '<div style="color: var(--dark); font-weight: 500;">Product Tidak Ditemukan...</div>' +
+        '</div>';
 }
