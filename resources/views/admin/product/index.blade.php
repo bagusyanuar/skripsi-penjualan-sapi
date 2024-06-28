@@ -19,6 +19,7 @@
             <tr>
                 <th width="5%" class="text-center"></th>
                 <th width="15%" class="text-center">Gambar</th>
+                <th width="12%" class="text-center">Kategori</th>
                 <th>Nama</th>
                 <th width="14%" class="text-center">Umur (tahun)</th>
                 <th width="12%" class="text-center">Berat (kg)</th>
@@ -76,6 +77,10 @@
                             }
                             return '-';
                         }
+                    },
+                    {
+                        data: 'kategori.nama',
+                        className: 'middle-header text-center',
                     },
                     {
                         data: 'nama',

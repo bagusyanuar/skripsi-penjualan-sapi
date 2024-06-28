@@ -20,6 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset('/adminlte/css/adminlte.min.css')}}">
     <link href="{{ asset('/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/style.admin.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/sweetalert2.css') }}" rel="stylesheet">
     <script src="{{ asset('/js/sweetalert2.min.js')}}"></script>
@@ -63,6 +64,13 @@
                        class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/dashboard*') ? 'active' : '' }}">
                         <i class="bx bxs-dashboard"></i>
                         <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.category') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/kategori*') ? 'active' : '' }}">
+                        <i class='bx bx-label'></i>
+                        <p>Kategori</p>
                     </a>
                 </li>
                 <li class="nav-item">

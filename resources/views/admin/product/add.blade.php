@@ -9,6 +9,16 @@
         <form method="post" id="form-data">
             @csrf
             <div class="w-100 mb-3">
+                <label for="category" class="form-label input-label">Kategori <span
+                        class="color-danger">*</span></label>
+                <select id="category" name="category" class="text-input">
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->nama }}</option>
+                    @endforeach
+                </select>
+                <span id="category-error" class="input-label-error d-none"></span>
+            </div>
+            <div class="w-100 mb-3">
                 <label for="name" class="form-label input-label">Product Name <span
                         class="color-danger">*</span></label>
                 <input type="text" placeholder="product name" class="text-input" id="name"

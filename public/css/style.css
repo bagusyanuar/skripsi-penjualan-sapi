@@ -464,3 +464,31 @@ a.nav-brand img{
 .product-detail-action .btn-shop i {
     margin-right: 0.5rem;
 }
+
+.lazy-backdrop {
+    position: fixed;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    cursor: pointer;
+}
+
+.input-label {
+    font-size: 0.8em;
+    color: var(--dark);
+    font-weight: 600 !important;
+}
+
+.input-label-error {
+    font-size: 0.6em;
+    font-weight: 500;
+    color: var(--danger);
+}

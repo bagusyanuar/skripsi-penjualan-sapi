@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('keranjangs', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('transaction_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('penjualan_id')->unsigned()->nullable();
             $table->bigInteger('product_id')->unsigned();
+            $table->integer('qty')->default(1);
             $table->integer('harga')->default(0);
-            $table->integer('qty')->default(0);
             $table->integer('total')->default(0);
             $table->timestamps();
-            $table->foreign('transaction_id')->references('id')->on('transactions');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('penjualan_id')->references('id')->on('penjualans');
             $table->foreign('product_id')->references('id')->on('products');
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('keranjangs');
     }
 };

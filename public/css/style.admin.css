@@ -162,17 +162,7 @@ body {
     border-color: color-mix(in srgb, black 20%, var(--light));
 }
 
-.input-label {
-    font-size: 0.8em;
-    color: var(--dark);
-    font-weight: 600 !important;
-}
 
-.input-label-error {
-    font-size: 0.6em;
-    font-weight: 500;
-    color: var(--danger);
-}
 
 
 .custom-sidebar {
