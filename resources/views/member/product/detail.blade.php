@@ -22,21 +22,33 @@
                 <p class="product-detail-name">{{ $product->nama }}</p>
                 <p class="product-detail-specification">Umur : {{ $product->umur }} (tahun)</p>
                 <p class="product-detail-specification mb-3">Berat : {{ $product->berat }} (kg)</p>
+                <p class="page-title" style="font-size: 1em">Product Description</p>
+                <div style="font-size: 0.8em">{!! $product->deskripsi !!}</div>
+{{--                <div class="product-detail-action">--}}
+{{--                    <a href="#" class="btn-add-cart" id="btn-add-cart">--}}
+{{--                        <i class='bx bx-cart-alt'></i>--}}
+{{--                        <span>Tambah Keranjang</span>--}}
+{{--                    </a>--}}
+{{--                    <a href="#" class="btn-shop" id="btn-shop">--}}
+{{--                        <i class='bx bx-shopping-bag'></i>--}}
+{{--                        <span>Beli Sekarang</span>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+            </div>
+            <div class="product-detail-action-container">
+                <p style="font-weight: bold; color: var(--dark); margin-bottom: 0;">Beli Sekarang</p>
+                <hr class="custom-divider"/>
                 <div class="product-detail-action">
-                    <a href="#" class="btn-add-cart" id="btn-add-cart">
-                        <i class='bx bx-cart-alt'></i>
-                        <span>Tambah Keranjang</span>
-                    </a>
-                    <a href="#" class="btn-shop" id="btn-shop">
-                        <i class='bx bx-shopping-bag'></i>
-                        <span>Beli Sekarang</span>
-                    </a>
+                    @auth()
+                        <a href="#" class="btn-add-cart mb-1" id="btn-cart" data-id="{{ $product->id }}">Keranjang</a>
+                    @else
+                        <a href="{{ route('member.login') }}" class="btn-add-cart mb-1">Keranjang</a>
+                    @endauth
                 </div>
             </div>
         </div>
         <hr class="custom-divider"/>
-        <p class="page-title" style="font-size: 1em">Product Description</p>
-        <div style="font-size: 0.8em">{!! $product->deskripsi !!}</div>
+
     </div>
 @endsection
 
