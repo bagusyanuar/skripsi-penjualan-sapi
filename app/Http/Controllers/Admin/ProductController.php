@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Helper\CustomController;
+use App\Models\Kategori;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +22,7 @@ class ProductController extends CustomController
     {
 
         if ($this->request->ajax()) {
-            $products = Product::with([])
+            $products = Product::with(['kategori'])
                 ->orderBy('created_at', 'DESC')
                 ->get();
             return $this->basicDataTables($products);
@@ -34,7 +35,10 @@ class ProductController extends CustomController
         if ($this->request->method() === 'POST' && $this->request->ajax()) {
             return $this->store();
         }
-        return view('admin.product.add');
+        $categories = Kategori::all();
+        return view('admin.product.add')->with([
+            'categories' => $categories
+        ]);
     }
 
     public function edit($id)
@@ -44,7 +48,11 @@ class ProductController extends CustomController
         if ($this->request->method() === 'POST' && $this->request->ajax()) {
             return $this->patch($data);
         }
-        return view('admin.product.edit')->with(['data' => $data]);
+        $categories = Kategori::all();
+        return view('admin.product.edit')->with([
+            'data' => $data,
+            'categories' => $categories
+        ]);
     }
 
     private $rule = [
@@ -108,10 +116,11 @@ class ProductController extends CustomController
     private function getDataRequest()
     {
         $data_request = [
+            'kategori_id' => $this->postField('category'),
             'nama' => $this->postField('name'),
             'harga' => $this->postField('price'),
             'berat' => $this->postField('weight'),
-            'age' => $this->postField('age'),
+            'umur' => $this->postField('age'),
             'deskripsi' => $this->postField('description')
         ];
 

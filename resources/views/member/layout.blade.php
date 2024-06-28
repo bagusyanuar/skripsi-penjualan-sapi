@@ -17,6 +17,7 @@
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/css/style.member.css') }}" rel="stylesheet" />
     <title>Penjualan Sapi</title>
     @yield('css')
 </head>
@@ -38,8 +39,37 @@
         </a>
     </div>
 </div>
-<div class="main-content">
-    @yield('content')
+@yield('content')
+<div class="custom-footer row">
+    <div class="col-3 d-flex justify-content-center align-items-center flex-column">
+        {{--        <div class="footer-brand-container">--}}
+        <img src="{{ asset('/assets/image/logo.png') }}" width="120" style="border-radius: 8px;">
+        {{--        </div>--}}
+        <p style="color: var(--dark); font-size: 0.8em;">Penyedia Sapi Terpercaya</p>
+    </div>
+    <div class="col-3 d-flex flex-column">
+        <p style="color: var(--dark); font-size: 1em; font-weight: 500; letter-spacing: 2px">HELI FARM</p>
+        <a href="{{ route('member.home') }}" class="footer-link mb-1">BERANDA</a>
+        <a href="{{ route('member.product') }}" class="footer-link mb-1">PRODUCT</a>
+        <a href="#" class="footer-link mb-1">TENTANG KAMI</a>
+        <a href="#" class="footer-link">KONTAK</a>
+    </div>
+    <div class="col-3">
+        <p style="color: var(--dark); font-size: 1em; font-weight: 500; letter-spacing: 2px">HUBUNGI KAMI</p>
+        <a href="#" class="footer-link d-flex align-items-center mb-1">
+            <i class='bx bxl-whatsapp me-1'></i>
+            <span>(+62) 8963266623</span>
+        </a>
+        <a href="#" class="footer-link d-flex align-items-center mb-1">
+            <i class='bx bxl-instagram me-1'></i>
+            <span>@heli.farm</span>
+        </a>
+        <a href="#" class="footer-link d-flex align-items-center mb-1">
+            <i class='bx bx-map me-1'></i>
+            <span>jl. veteran no 54, tipes, solo</span>
+        </a>
+    </div>
+    <div class="col-3"></div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>

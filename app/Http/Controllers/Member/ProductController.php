@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Member;
 
 
 use App\Helper\CustomController;
+use App\Models\Kategori;
 use App\Models\Product;
 
 class ProductController extends CustomController
@@ -19,15 +20,22 @@ class ProductController extends CustomController
         if ($this->request->ajax()) {
             try {
                 $q = $this->request->query->get('param');
-                $products = Product::with([])
-                    ->where('nama', 'LIKE', '%' . $q . '%')
+                $c = $this->request->query->get('category');
+                $query = Product::with([]);
+                if ($c !== 'all' && $c !== '') {
+                    $query->where('kategori_id', '=', $c);
+                }
+                $products = $query->where('nama', 'LIKE', '%' . $q . '%')
                     ->get();
                 return $this->jsonSuccessResponse('success', $products);
             } catch (\Exception $e) {
                 return $this->jsonErrorResponse('internal server error...');
             }
         }
-        return view('member.product.index');
+        $categories = Kategori::all();
+        return view('member.product.index')->with([
+            'categories' => $categories
+        ]);
     }
 
     public function detail($id)
