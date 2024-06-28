@@ -126,3 +126,20 @@ function createEmptyProduct() {
         '<div style="color: var(--dark); font-weight: 500;">Product Tidak Ditemukan...</div>' +
         '</div>';
 }
+
+async function BaseDeleteHandler(url, id) {
+    try {
+        await $.post(url);
+        Swal.fire({
+            title: 'Success',
+            text: 'Berhasil menghapus data...',
+            icon: 'success',
+            timer: 700
+        }).then(() => {
+            window.location.reload();
+        })
+    }catch (e) {
+        let error_message = JSON.parse(e.responseText);
+        ErrorAlert('Error', error_message.message);
+    }
+}

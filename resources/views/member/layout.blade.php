@@ -18,6 +18,8 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet" />
     <link href="{{ asset('/css/style.member.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/css/sweetalert2.css') }}" rel="stylesheet">
+    <script src="{{ asset('/js/sweetalert2.min.js')}}"></script>
     <title>Penjualan Sapi</title>
     @yield('css')
 </head>
@@ -34,9 +36,20 @@
         <a href="#" class="nav-link-item">Kontak</a>
     </div>
     <div class="nav-menu-container">
-        <a href="{{ route('member.login') }}" class="nav-menu-item">
-            <i class='bx bx-user' style="font-size: 16px"></i>
-        </a>
+        @auth()
+            <a href="#" class="nav-menu-item">
+                <i class='bx bx-cart-alt'></i>
+                <div class="custom-badge d-none"><span>4</span></div>
+            </a>
+            <a href="{{ route('member.login') }}" class="nav-menu-item">
+                <i class='bx bx-user' style="font-size: 16px"></i>
+            </a>
+        @else
+            <a href="{{ route('member.login') }}" class="nav-menu-item">
+                <i class='bx bx-user' style="font-size: 16px"></i>
+            </a>
+        @endauth
+
     </div>
 </div>
 @yield('content')

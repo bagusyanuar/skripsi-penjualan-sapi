@@ -21,7 +21,11 @@ Route::group(['prefix' => 'product'], function () {
     Route::get('/{id}', [\App\Http\Controllers\Member\ProductController::class, 'detail'])->name('member.product.detail');
 });
 
-Route::get('/keranjang', [\App\Http\Controllers\Member\CartController::class, 'index'])->name('member.cart');
+Route::group(['prefix' => 'keranjang'], function () {
+    Route::match(['post', 'get'], '/', [\App\Http\Controllers\Member\CartController::class, 'index'])->name('member.cart');
+    Route::post('/checkout', [\App\Http\Controllers\Member\CartController::class, 'checkout'])->name('member.checkout');
+    Route::post('/{id}/delete', [\App\Http\Controllers\Member\CartController::class, 'delete'])->name('member.delete');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Route::match(['get', 'post'], '/', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');

@@ -1,6 +1,13 @@
 @extends('member.layout')
 
 @section('content')
+    <div class="lazy-backdrop" id="overlay-loading">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <div class="spinner-border text-light" role="status">
+            </div>
+            <p class="text-light">Sedang Menyimpan Data...</p>
+        </div>
+    </div>
     <div class="main-content">
         <div class="w-100 d-flex justify-content-between align-items-center mb-3">
             <p class="page-title">Product Detail</p>
@@ -24,16 +31,6 @@
                 <p class="product-detail-specification mb-3">Berat : {{ $product->berat }} (kg)</p>
                 <p class="page-title" style="font-size: 1em">Product Description</p>
                 <div style="font-size: 0.8em">{!! $product->deskripsi !!}</div>
-{{--                <div class="product-detail-action">--}}
-{{--                    <a href="#" class="btn-add-cart" id="btn-add-cart">--}}
-{{--                        <i class='bx bx-cart-alt'></i>--}}
-{{--                        <span>Tambah Keranjang</span>--}}
-{{--                    </a>--}}
-{{--                    <a href="#" class="btn-shop" id="btn-shop">--}}
-{{--                        <i class='bx bx-shopping-bag'></i>--}}
-{{--                        <span>Beli Sekarang</span>--}}
-{{--                    </a>--}}
-{{--                </div>--}}
             </div>
             <div class="product-detail-action-container">
                 <p style="font-weight: bold; color: var(--dark); margin-bottom: 0;">Beli Sekarang</p>
@@ -55,7 +52,40 @@
 @section('js')
     <script src="{{ asset('/js/helper.js') }}"></script>
     <script>
+        var cartURL = '{{ route('member.cart') }}';
+        function eventAddToCart() {
+            $('#btn-cart').on('click', function (e) {
+                e.preventDefault();
+                let id = this.dataset.id;
+                addToCartHandler(id)
+            })
+        }
 
+        async function addToCartHandler(id) {
+            try {
+                blockLoading(true);
+                await $.post(cartURL, {
+                    id
+                });
+                blockLoading(false);
+                Swal.fire({
+                    title: 'Success',
+                    text: 'Berhasil menambahkan product ke keranjang...',
+                    icon: 'success',
+                    timer: 700
+                }).then(() => {
+                    window.location.href = '/keranjang';
+                })
+            }catch (e) {
+                blockLoading(false);
+                let error_message = JSON.parse(e.responseText);
+                ErrorAlert('Error', error_message.message);
+            }
+        }
+
+        $(document).ready(function () {
+            eventAddToCart();
+        })
 
     </script>
 @endsection
