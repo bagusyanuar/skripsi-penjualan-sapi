@@ -100,4 +100,10 @@ class AuthController extends CustomController
         }
         return view('member.register');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('member.home');
+    }
 }

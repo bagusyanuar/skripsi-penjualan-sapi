@@ -80,7 +80,7 @@
                               name="address">{{ $address }}</textarea>
                 </div>
                 <hr class="custom-divider"/>
-                <a href="#" class="btn-action-accent mb-1" id="btn-checkout">Checkout</a>
+                <a href="{{ route('member.order.payment', ['id' => '1']) }}" class="btn-action-accent mb-1" id="btn-checkout">Checkout</a>
             </div>
         </div>
     </div>

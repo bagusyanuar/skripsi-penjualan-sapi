@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\Member\HomeController::class, 'index'])->name('member.home');
 Route::match(['post', 'get'], '/login', [\App\Http\Controllers\Member\AuthController::class, 'login'])->name('member.login');
+Route::get( '/logout', [\App\Http\Controllers\Member\AuthController::class, 'logout'])->name('member.logout');
 Route::match(['post', 'get'], '/register', [\App\Http\Controllers\Member\AuthController::class, 'register'])->name('member.register');
 Route::group(['prefix' => 'product'], function () {
     Route::get('/', [\App\Http\Controllers\Member\ProductController::class, 'index'])->name('member.product');
@@ -25,6 +26,12 @@ Route::group(['prefix' => 'keranjang'], function () {
     Route::match(['post', 'get'], '/', [\App\Http\Controllers\Member\CartController::class, 'index'])->name('member.cart');
     Route::post('/checkout', [\App\Http\Controllers\Member\CartController::class, 'checkout'])->name('member.checkout');
     Route::post('/{id}/delete', [\App\Http\Controllers\Member\CartController::class, 'delete'])->name('member.delete');
+});
+
+Route::group(['prefix' => 'pesanan'], function () {
+    Route::match(['post', 'get'], '/', [\App\Http\Controllers\Member\PesananController::class, 'index'])->name('member.order');
+    Route::get('/{id}', [\App\Http\Controllers\Member\PesananController::class, 'detail'])->name('member.order.detail');
+    Route::match(['post', 'get'],'/{id}/pembayaran', [\App\Http\Controllers\Member\PesananController::class, 'pembayaran'])->name('member.order.payment');
 });
 
 Route::group(['prefix' => 'admin'], function () {
