@@ -18,7 +18,7 @@
     <link href="{{ asset('/css/style.member.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/sweetalert2.css') }}" rel="stylesheet">
     <script src="{{ asset('/js/sweetalert2.min.js')}}"></script>
-    <title>HARI PONSEL | LOGIN</title>
+    <title>HELI FARM | LOGIN</title>
 </head>
 <body>
 @if (\Illuminate\Support\Facades\Session::has('failed'))

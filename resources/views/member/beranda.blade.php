@@ -39,7 +39,7 @@
                 @endforeach
             </div>
             <div class="w-100 d-flex justify-content-center mb-3">
-                <a href="#" style="color: var(--dark); font-weight: 500;">
+                <a href="{{ route('member.product') }}" style="color: var(--dark); font-weight: 500;">
                     Lihat Semua Pilihan Sapi
                 </a>
             </div>

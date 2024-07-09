@@ -1,13 +1,31 @@
 @extends('member.layout')
 
 @section('content')
+    @if (\Illuminate\Support\Facades\Session::has('failed'))
+        <script>
+            Swal.fire("Ooops", '{{ \Illuminate\Support\Facades\Session::get('failed') }}', "error")
+        </script>
+    @endif
+    @if (\Illuminate\Support\Facades\Session::has('success'))
+        <script>
+            Swal.fire({
+                title: 'Success',
+                text: '{{ \Illuminate\Support\Facades\Session::get('success') }}',
+                icon: 'success',
+                timer: 700
+            }).then(() => {
+                let id = '{{ \Illuminate\Support\Facades\Session::get('id') }}';
+                window.location.href = '/pesanan/' + id + '/pembayaran';
+            })
+        </script>
+    @endif
     <div class="main-content">
         <div class="w-100 d-flex justify-content-between align-items-center mb-3">
-            <p class="page-title">Cart</p>
+            <p class="page-title">Keranjang</p>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0" style="padding: 0 0;">
                     <li class="breadcrumb-item"><a href="{{ route('member.home') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                    <li class="breadcrumb-item active" aria-current="page">Keranjang</li>
                 </ol>
             </nav>
         </div>
@@ -44,43 +62,51 @@
                 @endforelse
             </div>
             <div class="cart-action-container">
-                <p style="font-size: 1em; font-weight: bold; color: var(--dark);">Ringkasan Belanja</p>
-                <hr class="custom-divider"/>
-                <div class="w-100">
-                    <span class="form-label input-label" style="font-size: 0.8em; font-weight: 600;">Pengecekan Sapi</span>
-                    <div class="mt-2">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input pcb" type="radio" name="pcb" id="pcb_yes"
-                                   value="1" checked>
-                            <label class="form-check-label" for="pcb_yes" style="font-size: 0.8em; color: var(--dark);">
-                                Ya
-                            </label>
+                <form method="post" id="form-data" action="{{ route('member.checkout') }}">
+                    @csrf
+                    <p style="font-size: 1em; font-weight: bold; color: var(--dark);">Ringkasan Belanja</p>
+                    <hr class="custom-divider"/>
+                    <div class="w-100">
+                        <span class="form-label input-label"
+                              style="font-size: 0.8em; font-weight: 600;">Pengecekan Sapi</span>
+                        <div class="mt-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input pcb" type="radio" name="pcb" id="pcb_yes"
+                                       value="1" checked>
+                                <label class="form-check-label" for="pcb_yes"
+                                       style="font-size: 0.8em; color: var(--dark);">
+                                    Ya
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input pcb" type="radio" name="pcb" id="pcb_no" value="0">
+                                <label class="form-check-label" for="pcb_no"
+                                       style="font-size: 0.8em; color: var(--dark);">
+                                    Tidak
+                                </label>
+                            </div>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input pcb" type="radio" name="pcb" id="pcb_no" value="0">
-                            <label class="form-check-label" for="pcb_no" style="font-size: 0.8em; color: var(--dark);">
-                                Tidak
-                            </label>
+                        <hr class="custom-divider"/>
+                        <div class="w-100" id="panel-pcb">
+                            <div class="w-100 mb-1">
+                                <label for="pcb_date" class="form-label input-label">Tanggal PCB</label>
+                                <input type="date" class="text-input"
+                                       id="pcb_date"
+                                       name="pcb_date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"/>
+                            </div>
                         </div>
+                    </div>
+                    <div class="w-100 mb-1">
+                        <label for="address" class="form-label input-label">Alamat</label>
+                        <textarea rows="3" placeholder="contoh: Wonosaren rt 04 rw 08, jagalan, jebres"
+                                  class="text-input"
+                                  id="address"
+                                  name="address">{{ $address }}</textarea>
                     </div>
                     <hr class="custom-divider"/>
-                    <div class="w-100" id="panel-pcb">
-                        <div class="w-100 mb-1">
-                            <label for="pcb_date" class="form-label input-label">Tanggal PCB</label>
-                            <input type="date" class="text-input"
-                                      id="pcb_date"
-                                      name="pcb_date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" />
-                        </div>
-                    </div>
-                </div>
-                <div class="w-100 mb-1">
-                    <label for="address" class="form-label input-label">Alamat</label>
-                    <textarea rows="3" placeholder="contoh: Wonosaren rt 04 rw 08, jagalan, jebres" class="text-input"
-                              id="address"
-                              name="address">{{ $address }}</textarea>
-                </div>
-                <hr class="custom-divider"/>
-                <a href="{{ route('member.order.payment', ['id' => '1']) }}" class="btn-action-accent mb-1" id="btn-checkout">Checkout</a>
+                    <a href="{{ route('member.order.payment', ['id' => '1']) }}" class="btn-action-accent mb-1"
+                       id="btn-checkout">Checkout</a>
+                </form>
             </div>
         </div>
     </div>
@@ -119,9 +145,23 @@
             })
         }
 
+        function eventCheckout() {
+            $('#btn-checkout').on('click', function (e) {
+                e.preventDefault();
+                checkoutHandler()
+            })
+        }
+
+        function checkoutHandler() {
+            AlertConfirm('Konfirmasi!', 'Apakah anda yakin ingin checkout?', function () {
+                $('#form-data').submit();
+            })
+        }
+
         $(document).ready(function () {
             eventChangePCB();
             eventDeleteCart();
+            eventCheckout();
         })
     </script>
 @endsection

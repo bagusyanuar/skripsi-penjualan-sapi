@@ -27,8 +27,16 @@
             </div>
             <div class="product-detail-info-container mb-3">
                 <p class="product-detail-name">{{ $product->nama }}</p>
-                <p class="product-detail-specification">Umur : {{ $product->umur }} (tahun)</p>
-                <p class="product-detail-specification mb-3">Berat : {{ $product->berat }} (kg)</p>
+                <p style="margin-bottom: 2px; color: var(--bg-accent); font-size: 2.25em; font-weight: bold">
+                    Rp. {{ number_format($product->harga,0, ',','.') }}</p>
+                <div class="d-flex align-items-center mb-3">
+                    <p class="product-detail-specification mb-0" style="font-size: 0.8em">Umur : {{ $product->umur }}
+                        (tahun)</p>
+                    <span class="me-2 ms-2">|</span>
+                    <p class="product-detail-specification mb-0" style="font-size: 0.8em">Berat : {{ $product->berat }}
+                        (kg)</p>
+                </div>
+
                 <p class="page-title" style="font-size: 1em">Product Description</p>
                 <div style="font-size: 0.8em">{!! $product->deskripsi !!}</div>
             </div>
@@ -53,6 +61,7 @@
     <script src="{{ asset('/js/helper.js') }}"></script>
     <script>
         var cartURL = '{{ route('member.cart') }}';
+
         function eventAddToCart() {
             $('#btn-cart').on('click', function (e) {
                 e.preventDefault();
@@ -76,7 +85,7 @@
                 }).then(() => {
                     window.location.href = '/keranjang';
                 })
-            }catch (e) {
+            } catch (e) {
                 blockLoading(false);
                 let error_message = JSON.parse(e.responseText);
                 ErrorAlert('Error', error_message.message);

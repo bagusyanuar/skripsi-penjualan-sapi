@@ -17,6 +17,7 @@ Route::get('/', [\App\Http\Controllers\Member\HomeController::class, 'index'])->
 Route::match(['post', 'get'], '/login', [\App\Http\Controllers\Member\AuthController::class, 'login'])->name('member.login');
 Route::get( '/logout', [\App\Http\Controllers\Member\AuthController::class, 'logout'])->name('member.logout');
 Route::match(['post', 'get'], '/register', [\App\Http\Controllers\Member\AuthController::class, 'register'])->name('member.register');
+
 Route::group(['prefix' => 'product'], function () {
     Route::get('/', [\App\Http\Controllers\Member\ProductController::class, 'index'])->name('member.product');
     Route::get('/{id}', [\App\Http\Controllers\Member\ProductController::class, 'detail'])->name('member.product.detail');
