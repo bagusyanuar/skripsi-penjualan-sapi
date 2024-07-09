@@ -20,8 +20,26 @@ class Penjualan extends Model
         'status'
     ];
 
+    //status note
+    // 0 menunggu pembayaran
+    // 1 menunggu konfirmasi pembayaran
+    // 2 pesanan di proses
+    // 4 pesanan di kirim
+    // 4 selesai
+    // 5 pesanan di tolak
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function pembayaran_status()
+    {
+        return $this->hasOne(Pembayaran::class, 'penjualan_id')->orderBy('created_at', 'DESC');
+    }
+
+    public function keranjang()
+    {
+        return $this->hasMany(Keranjang::class, 'penjualan_id');
     }
 }

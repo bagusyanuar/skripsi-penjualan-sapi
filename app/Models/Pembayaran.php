@@ -14,6 +14,8 @@ class Pembayaran extends Model
     protected $fillable = [
         'penjualan_id',
         'tanggal',
+        'bank',
+        'atas_nama',
         'bukti',
         'deskripsi',
         'status'

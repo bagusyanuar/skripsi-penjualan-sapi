@@ -8,7 +8,7 @@
                 <ol class="breadcrumb mb-0" style="padding: 0 0;">
                     <li class="breadcrumb-item"><a href="{{ route('member.home') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('member.order') }}">Pesanan</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">HF-25019284</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $data->no_penjualan }}</li>
                 </ol>
             </nav>
         </div>
@@ -16,31 +16,40 @@
             <div class="mb-3" style="font-size: 0.8em; color: var(--dark);">
                 <div class="d-flex align-items-center mb-1">
                     <span style="" class="me-2">No. Pembelian :</span>
-                    <span style="font-weight: 600;">HF-25019284</span>
+                    <span style="font-weight: 600;">{{ $data->no_penjualan }}</span>
                 </div>
                 <div class="d-flex align-items-center mb-1">
                     <span style="" class="me-2">Tgl. Pembelian :</span>
-                    <span style="font-weight: 600;">{{ \Carbon\Carbon::now()->format('d F Y') }}</span>
+                    <span style="font-weight: 600;">{{ \Carbon\Carbon::parse($data->tanggal)->format('d F Y') }}</span>
                 </div>
-                <div class="d-flex align-items-center mb-1">
-                    <span style="" class="me-2">Pengecekan Sapi :</span>
-                    <div class="d-flex align-items-center gap-1">
-                        <span>Ya</span>
-                        <span style="font-weight: 600;">(2024-07-01)</span>
+                @if($data->tanggal_check !== null)
+                    <div class="d-flex align-items-center mb-1">
+                        <span style="" class="me-2">Pengecekan Sapi :</span>
+                        <div class="d-flex align-items-center gap-1">
+                            <span>Ya</span>
+                            <span style="font-weight: 600;">({{ \Carbon\Carbon::parse($data->tanggal_check)->format('d F Y') }})</span>
+                        </div>
                     </div>
-                </div>
+                @else
+                    <div class="d-flex align-items-center mb-1">
+                        <span style="" class="me-2">Pengecekan Sapi :</span>
+                        <div class="d-flex align-items-center gap-1">
+                            <span>Tidak</span>
+                        </div>
+                    </div>
+                @endif
                 <div class="d-flex align-items-center mb-1">
                     <span style="" class="me-2">Alamat Pengiriman :</span>
-                    <span style="font-weight: 600;">Jl. Veteran No. 14, Tipes, Surakarta</span>
+                    <span style="font-weight: 600;">{{ $data->alamat }}</span>
                 </div>
                 <div class="d-flex align-items-center mb-1">
                     <span style="" class="me-2">Status :</span>
                     <div style="font-weight: 600;">
-                            <div class="chip-status-danger">menunggu pembayaran</div>
+                        <div class="chip-status-danger">menunggu pembayaran</div>
                     </div>
                 </div>
             </div>
-            <hr class="custom-divider" />
+            <hr class="custom-divider"/>
             <div class="d-flex w-100 gap-3">
                 <div class="flex-grow-1 d-flex gap-2">
                     <div class="w-100 d-flex justify-content-center align-items-center">
@@ -53,7 +62,7 @@
                     <div class="d-flex align-items-center justify-content-between mb-1" style="font-size: 1em;">
                         <span style="color: var(--dark); font-size: 0.8em">Total</span>
                         <span id="lbl-total"
-                              style="color: var(--dark); font-weight: bold;">Rp25.000.000</span>
+                              style="color: var(--dark); font-weight: bold;">Rp{{ number_format($data->total, 0, ',', '.') }}</span>
                     </div>
                     <hr class="custom-divider"/>
                     <form method="post" id="form-data">
