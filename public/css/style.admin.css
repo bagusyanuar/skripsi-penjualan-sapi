@@ -297,18 +297,7 @@ body {
     border-bottom: 1px solid var(--light);
 }
 
-.dataTables_wrapper {
-    font-size: 0.8em;
-}
 
-.dataTables_wrapper .pagination .page-link {
-    font-size: 1em;
-}
-
-.dataTables_wrapper .pagination .page-item.active .page-link {
-    background-color: var(--bg-primary);
-    border-color: var(--bg-primary);
-}
 
 .lazy-backdrop {
     position: fixed;
@@ -389,4 +378,20 @@ table.dataTable td.dt-control:before {
 .btn-table-action-edit:hover {
     color: var(--dark);
     text-decoration: none;
+}
+
+.custom-tab-pills {
+    gap: 0.5rem !important;
+}
+
+.custom-tab-link {
+    border-radius: 10px !important;
+    font-size: 0.8em !important;
+    color: var(--dark) !important;
+    border:  1px solid var(--bg-primary) !important;
+}
+
+.custom-tab-link.active{
+    background-color: var(--bg-primary) !important;
+    color: var(--dark) !important;
 }

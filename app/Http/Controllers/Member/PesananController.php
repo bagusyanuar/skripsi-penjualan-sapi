@@ -32,7 +32,11 @@ class PesananController extends CustomController
 
     public function detail($id)
     {
-        return view('member.pesanan.detail');
+        $data = Penjualan::with(['pembayaran_status', 'keranjang'])
+            ->findOrFail($id);
+        return view('member.pesanan.detail')->with([
+            'data' => $data
+        ]);
     }
 
     public function pembayaran($id)

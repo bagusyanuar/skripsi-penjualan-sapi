@@ -45,7 +45,19 @@
                 <div class="d-flex align-items-center mb-1">
                     <span style="" class="me-2">Status :</span>
                     <div style="font-weight: 600;">
-                        <div class="chip-status-danger">menunggu pembayaran</div>
+                        @if($data->status === 0)
+                            <div class="chip-status-warning">menunggu pembayaran</div>
+                        @elseif($data->status === 1)
+                            <div class="chip-status-warning">menunggu konfirmasi pembayaran</div>
+                        @elseif($data->status === 2)
+                            <div class="chip-status-warning">pesanan di proses</div>
+                        @elseif($data->status === 3)
+                            <div class="chip-status-info">pesanan di kirim</div>
+                        @elseif($data->status === 4)
+                            <div class="chip-status-success">selesai</div>
+                        @elseif($data->status === 5)
+                            <div class="chip-status-danger">Pesanan Di tolak</div>
+                        @endif
                     </div>
                 </div>
             </div>

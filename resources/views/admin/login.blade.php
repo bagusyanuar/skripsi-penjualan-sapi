@@ -19,13 +19,32 @@
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <link href="{{ asset('/css/style.admin.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('/css/sweetalert2.css') }}" rel="stylesheet">
+    <script src="{{ asset('/js/sweetalert2.min.js')}}"></script>
     <title>Form Login Admin | Heli Farm</title>
 </head>
 <body>
+@if (\Illuminate\Support\Facades\Session::has('failed'))
+    <script>
+        Swal.fire("Ooops", '{{ \Illuminate\Support\Facades\Session::get('failed') }}', "error")
+    </script>
+@endif
+@if (\Illuminate\Support\Facades\Session::has('success'))
+    <script>
+        Swal.fire({
+            title: 'Success',
+            text: '{{ \Illuminate\Support\Facades\Session::get('success') }}',
+            icon: 'success',
+            timer: 700
+        }).then(() => {
+            window.location.href = '/';
+        })
+    </script>
+@endif
 <div class="login-container">
     <div class="card-login-form">
         <img src="{{ asset('/assets/image/logo.png') }}" alt="brand-image" class="bottom-space-medium">
-        <p class="font-normal color-dark fw-bold bottom-space-large">Form Login</p>
+        <p class="font-normal color-dark fw-bold bottom-space-large">Form Login Admin</p>
         <form method="post" class="w-100">
             @csrf
             <div class="form-login">

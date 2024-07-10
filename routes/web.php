@@ -37,6 +37,7 @@ Route::group(['prefix' => 'pesanan'], function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::match(['get', 'post'], '/', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
+    Route::get( '/logout', [\App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin.logout');
 
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -50,5 +51,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('admin.product');
         Route::match(['post', 'get'], '/add', [\App\Http\Controllers\Admin\ProductController::class, 'add'])->name('admin.product.add');
         Route::match(['post', 'get'], '/{id}/edit', [\App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('admin.product.edit');
+    });
+
+    Route::group(['prefix' => 'pesanan'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\PesananController::class, 'index'])->name('admin.order');
+        Route::match(['post', 'get'],'/{id}/pesanan-baru', [\App\Http\Controllers\Admin\PesananController::class, 'detail_new'])->name('admin.order.new');
     });
 });

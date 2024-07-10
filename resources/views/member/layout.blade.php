@@ -46,8 +46,8 @@
                     <i class='bx bx-user' style="font-size: 16px"></i>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="drop-profile">
-                    <li><a class="dropdown-item" href="#" style="font-size: 0.8em; font-weight: 600; var(--dark);">Pesanan</a></li>
-                    <li><a class="dropdown-item" href="#" style="font-size: 0.8em; font-weight: 600; var(--dark);">Akun</a></li>
+                    <li><a class="dropdown-item" href="{{ route('member.order') }}" style="font-size: 0.8em; font-weight: 600; var(--dark);">Pesanan</a></li>
+{{--                    <li><a class="dropdown-item" href="#" style="font-size: 0.8em; font-weight: 600; var(--dark);">Akun</a></li>--}}
                     <hr/>
                     <li><a class="dropdown-item" href="{{ route('member.logout') }}" style="font-size: 0.8em; font-weight: 600; var(--dark);">Logout</a></li>
                 </ul>

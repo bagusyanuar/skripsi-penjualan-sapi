@@ -18,29 +18,31 @@
             })
         </script>
     @endif
-    <div class="w-100 d-flex justify-content-between align-items-center mb-3">
-        <p class="page-title">Pesanan</p>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="{{ route('member.home') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Pesanan</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="w-100" style="padding-left: 25px">
-        <div class="card-content">
-            <table id="table-data" class="display table w-100">
-                <thead>
-                <tr>
-                    <th width="5%" class="text-center">#</th>
-                    <th width="10%" class="text-center">Tanggal</th>
-                    <th>No. Penjualan</th>
-                    <th width="10%" class="text-end">Total</th>
-                    <th width="20%" class="text-center">Status</th>
-                    <th width="8%" class="text-center"></th>
-                </tr>
-                </thead>
-            </table>
+    <div class="main-content">
+        <div class="w-100 d-flex justify-content-between align-items-center mb-3">
+            <p class="page-title">Pesanan</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="{{ route('member.home') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Pesanan</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="w-100">
+            <div class="card-content">
+                <table id="table-data" class="display table w-100">
+                    <thead>
+                    <tr>
+                        <th width="5%" class="text-center">#</th>
+                        <th width="10%" class="text-center">Tanggal</th>
+                        <th>No. Penjualan</th>
+                        <th width="10%" class="text-end">Total</th>
+                        <th width="20%" class="text-center">Status</th>
+                        <th width="8%" class="text-center"></th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
 @endsection
