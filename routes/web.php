@@ -48,6 +48,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/{id}/delete', [\App\Http\Controllers\Admin\PenggunaController::class, 'delete'])->name('admin.pengguna.delete');
     });
 
+    Route::group(['prefix' => 'customer'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\CustomerController::class, 'index'])->name('admin.customer');
+    });
+
     Route::group(['prefix' => 'kategori'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\KategoriController::class, 'index'])->name('admin.category');
         Route::match(['post', 'get'], '/add', [\App\Http\Controllers\Admin\KategoriController::class, 'add'])->name('admin.category.add');

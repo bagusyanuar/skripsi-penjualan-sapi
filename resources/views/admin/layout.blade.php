@@ -74,6 +74,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.customer') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/customer*') ? 'active' : '' }}">
+                        <i class='bx bx-group' ></i>
+                        <p>Customer</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.category') }}"
                        class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/kategori*') ? 'active' : '' }}">
                         <i class='bx bx-label'></i>
