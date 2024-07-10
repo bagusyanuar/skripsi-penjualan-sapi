@@ -22,6 +22,13 @@
             </button>
         </li>
         <li class="nav-item" role="presentation">
+            <button class="nav-link custom-tab-link" id="pills-check-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-check"
+                    type="button" role="tab" aria-controls="pills-check" aria-selected="false">
+                Pengecekan
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
             <button class="nav-link custom-tab-link" id="pills-process-tab" data-bs-toggle="pill"
                     data-bs-target="#pills-process"
                     type="button" role="tab" aria-controls="pills-process" aria-selected="false">
@@ -63,6 +70,25 @@
                 </table>
             </div>
         </div>
+        <div class="tab-pane fade" id="pills-check" role="tabpanel" aria-labelledby="pills-check-tab">
+            <div class="card-content">
+                <div class="content-header mb-3">
+                    <p class="header-title">Data Pesanan Pengecekan Sapi</p>
+                </div>
+                <hr class="custom-divider"/>
+                <table id="table-data-check-order" class="display table w-100">
+                    <thead>
+                    <tr>
+                        <th width="5%" class="text-center">#</th>
+                        <th width="18%" class="text-center">No. Penjualan</th>
+                        <th class="text-left">Customer</th>
+                        <th width="12%" class="text-center">No. HP</th>
+                        <th width="8%" class="text-center"></th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
         <div class="tab-pane fade" id="pills-process" role="tabpanel" aria-labelledby="pills-process-tab">
             <div class="card-content">
                 <div class="content-header mb-3">
@@ -73,7 +99,7 @@
                     <thead>
                     <tr>
                         <th width="5%" class="text-center">#</th>
-                        <th width="15%" class="text-center">No. Penjualan</th>
+                        <th width="18%" class="text-center">No. Penjualan</th>
                         <th class="text-left">Customer</th>
                         <th width="12%" class="text-center">No. HP</th>
                         <th width="8%" class="text-center"></th>
@@ -92,7 +118,7 @@
                     <thead>
                     <tr>
                         <th width="5%" class="text-center">#</th>
-                        <th width="15%" class="text-center">No. Penjualan</th>
+                        <th width="18%" class="text-center">No. Penjualan</th>
                         <th class="text-left">Customer</th>
                         <th width="12%" class="text-center">No. HP</th>
                         <th width="8%" class="text-center"></th>
@@ -111,7 +137,7 @@
                     <thead>
                     <tr>
                         <th width="5%" class="text-center">#</th>
-                        <th width="15%" class="text-center">No. Penjualan</th>
+                        <th width="18%" class="text-center">No. Penjualan</th>
                         <th class="text-left">Customer</th>
                         <th width="12%" class="text-center">No. HP</th>
                         <th width="8%" class="text-center"></th>
@@ -129,7 +155,7 @@
     <script src="{{ asset('/js/helper.js') }}"></script>
     <script>
         var path = '/{{ request()->path() }}';
-        var table, tableProcess, tableSend ,tableFinish;
+        var table, tableCheck, tableProcess, tableSend ,tableFinish;
 
         function generateTableNewOrder() {
             table = $('#table-data-new-order').DataTable({
@@ -186,13 +212,66 @@
             });
         }
 
+        function generateTableCheckOrder() {
+            tableCheck = $('#table-data-check-order').DataTable({
+                ajax: {
+                    type: 'GET',
+                    url: path,
+                    'data': function (d) {
+                        d.status = 2
+                    }
+                },
+                "aaSorting": [],
+                "order": [],
+                scrollX: true,
+                responsive: true,
+                paging: true,
+                "fnDrawCallback": function (setting) {
+                },
+                columns: [
+                    {
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        searchable: false,
+                        orderable: false,
+                        className: 'text-center middle-header',
+                    },
+                    {
+                        data: 'no_penjualan',
+                        className: 'middle-header text-center',
+                    },
+                    {
+                        data: 'user.customer.nama',
+                        className: 'middle-header text-left',
+                    },
+                    {
+                        data: 'user.customer.no_hp',
+                        className: 'middle-header text-left',
+                    },
+                    {
+                        data: null,
+                        orderable: false,
+                        className: 'text-center middle-header',
+                        render: function (data) {
+                            let id = data['id'];
+                            let urlDetail = path + '/' + id + '/pesanan-check';
+                            return '<div class="w-100 d-flex justify-content-center align-items-center gap-1">' +
+                                '<a style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
+                                '</div>';
+                        }
+                    }
+                ],
+            });
+
+        }
+
         function generateTableProcessOrder() {
             tableProcess = $('#table-data-process-order').DataTable({
                 ajax: {
                     type: 'GET',
                     url: path,
                     'data': function (d) {
-                        d.status = 2
+                        d.status = 3
                     }
                 },
                 "aaSorting": [],
@@ -239,13 +318,13 @@
 
         }
 
-        function generateTableTakeOrder() {
+        function generateTableSendOrder() {
             tableSend = $('#table-data-send-order').DataTable({
                 ajax: {
                     type: 'GET',
                     url: path,
                     'data': function (d) {
-                        d.status = 3
+                        d.status = 4
                     }
                 },
                 "aaSorting": [],
@@ -281,7 +360,7 @@
                         className: 'text-center middle-header',
                         render: function (data) {
                             let id = data['id'];
-                            let urlDetail = path + '/' + id + '/siap-diambil';
+                            let urlDetail = path + '/' + id + '/pesanan-dikirim';
                             return '<div class="w-100 d-flex justify-content-center align-items-center gap-1">' +
                                 '<a style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
                                 '</div>';
@@ -298,7 +377,7 @@
                     type: 'GET',
                     url: path,
                     'data': function (d) {
-                        d.status = 4
+                        d.status = 5
                     }
                 },
                 "aaSorting": [],
@@ -347,6 +426,10 @@
 
         function eventChangeTab() {
             $('#transaction-tab').on('shown.bs.tab', function (e) {
+                if (e.target.id === 'pills-check-tab') {
+                    tableCheck.columns.adjust();
+                }
+
                 if (e.target.id === 'pills-process-tab') {
                     tableProcess.columns.adjust();
                 }
@@ -363,9 +446,10 @@
 
         $(document).ready(function () {
             generateTableNewOrder();
-            // generateTableProcessOrder();
-            // generateTableTakeOrder();
-            // generateTableFinishOrder();
+            generateTableCheckOrder();
+            generateTableProcessOrder();
+            generateTableSendOrder();
+            generateTableFinishOrder();
             eventChangeTab();
         })
     </script>

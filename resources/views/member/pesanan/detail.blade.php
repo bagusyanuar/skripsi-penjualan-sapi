@@ -54,12 +54,14 @@
                                 @elseif($data->status === 1)
                                     <div class="chip-status-warning">menunggu konfirmasi pembayaran</div>
                                 @elseif($data->status === 2)
-                                    <div class="chip-status-warning">pesanan di proses</div>
+                                    <div class="chip-status-warning">pengecekan sapi</div>
                                 @elseif($data->status === 3)
-                                    <div class="chip-status-info">pesanan di kirim</div>
+                                    <div class="chip-status-warning">pesanan di proses</div>
                                 @elseif($data->status === 4)
-                                    <div class="chip-status-success">selesai</div>
+                                    <div class="chip-status-info">pesanan di kirim</div>
                                 @elseif($data->status === 5)
+                                    <div class="chip-status-success">selesai</div>
+                                @elseif($data->status === 6)
                                     <div class="chip-status-danger">Pesanan Di tolak</div>
                                 @endif
                             </div>
@@ -82,53 +84,66 @@
                         </div>
                         <div class="progress-connector-wrapper">
                             <div
-                                class="progress-connector {{ ($data->status < 5 && $data->status > 0) ? 'active' : '' }}"></div>
+                                class="progress-connector {{ ($data->status < 6 && $data->status > 0) ? 'active' : '' }}"></div>
                         </div>
                         <div class="progress-item-wrapper">
-                            <div class="progress-item {{ ($data->status !== 5 && $data->status > 0) ? 'active' : '' }}">
+                            <div class="progress-item {{ ($data->status !== 6 && $data->status > 0) ? 'active' : '' }}">
                                 <i class='bx bx-user-circle'></i>
                             </div>
                             <div
-                                class="progress-item-text {{ ($data->status !== 5 && $data->status > 0) ? 'active' : '' }}">
+                                class="progress-item-text {{ ($data->status !== 6 && $data->status > 0) ? 'active' : '' }}">
                                 Menunggu Konfirmasi Pembayaran
                             </div>
                         </div>
                         <div class="progress-connector-wrapper">
                             <div
-                                class="progress-connector {{ ($data->status !== 5 && $data->status > 1) ? 'active' : '' }}"></div>
+                                class="progress-connector {{ ($data->status !== 6 && $data->status > 1) ? 'active' : '' }}"></div>
                         </div>
                         <div class="progress-item-wrapper">
-                            <div class="progress-item {{ ($data->status !== 5 && $data->status > 1) ? 'active' : '' }}">
+                            <div class="progress-item {{ ($data->status !== 6 && $data->status > 1) ? 'active' : '' }}">
+                                <i class='bx bx-like'></i>
+                            </div>
+                            <div
+                                class="progress-item-text {{ ($data->status !== 6 && $data->status > 1) ? 'active' : '' }}">
+                                Pengecekan Sapi
+                            </div>
+                        </div>
+                        <div class="progress-connector-wrapper">
+                            <div
+                                class="progress-connector {{ ($data->status !== 6 && $data->status > 2) ? 'active' : '' }}"></div>
+                        </div>
+                        <div class="progress-item-wrapper">
+                            <div class="progress-item {{ ($data->status !== 6 && $data->status > 2) ? 'active' : '' }}">
                                 <i class='bx bx-package'></i>
                             </div>
                             <div
-                                class="progress-item-text {{ ($data->status !== 5 && $data->status > 1) ? 'active' : '' }}">
+                                class="progress-item-text {{ ($data->status !== 6 && $data->status > 2) ? 'active' : '' }}">
                                 Pesanan Di Proses
                             </div>
                         </div>
                         <div class="progress-connector-wrapper">
                             <div
-                                class="progress-connector {{ ($data->status !== 5 && $data->status > 2) ? 'active' : '' }}"></div>
+                                class="progress-connector {{ ($data->status !== 6 && $data->status > 3) ? 'active' : '' }}"></div>
                         </div>
                         <div class="progress-item-wrapper">
-                            <div class="progress-item {{ ($data->status !== 5 && $data->status > 2) ? 'active' : '' }}">
+                            <div class="progress-item {{ ($data->status !== 6 && $data->status > 3) ? 'active' : '' }}">
                                 <i class='bx bx-car'></i>
                             </div>
                             <div
-                                class="progress-item-text {{ ($data->status !== 5 && $data->status > 2) ? 'active' : '' }}">
+                                class="progress-item-text {{ ($data->status !== 6 && $data->status > 3) ? 'active' : '' }}">
                                 Barang Dikirim
                             </div>
                         </div>
                         <div class="progress-connector-wrapper">
                             <div
-                                class="progress-connector {{ ($data->status !== 5 && $data->status > 3) ? 'active' : '' }}"></div>
+                                class="progress-connector {{ ($data->status !== 6 && $data->status > 4) ? 'active' : '' }}"></div>
                         </div>
                         <div class="progress-item-wrapper">
-                            <div class="progress-item {{ ($data->status !== 5 && $data->status > 3) ? 'active' : '' }}">
+                            <div class="progress-item {{ ($data->status !== 6 && $data->status > 4) ? 'active' : '' }}">
                                 <i class='bx bx-check'></i>
                             </div>
                             <div
-                                class="progress-item-text {{ ($data->status !== 5 && $data->status > 3) ? 'active' : '' }}">
+                                class="progress-item-text {{ ($data->status !== 6 && $data->status > 4) ? 'active' : '' }}">
                                 Selesai
                             </div>
                         </div>
@@ -138,42 +153,77 @@
 
             <hr class="custom-divider"/>
             <div class="d-flex w-100 gap-3">
-                <div class="flex-grow-1 d-flex gap-2">
-                    <div class="cart-list-container">
-                        <div class="cart-item-container mb-3" style="height: fit-content;">
-                            <img src="{{ asset('/assets/products/f3d01311-b593-499b-9916-09c69d480db1.jpg') }}"
-                                 alt="product-image">
-                            <div class="flex-grow-1">
-                                <p style="color: var(--dark); font-size: 1em; margin-bottom: 0; font-weight: bold">Sapi
-                                    A</p>
-                                <p style="margin-bottom: 0; color: var(--dark-tint); font-size: 0.8em;">Jenis A</p>
-                                <div class="d-flex align-items-center" style="font-size: 0.8em;">
-                                    <span style="color: var(--dark-tint);" class="me-1">Jumlah: </span>
-                                    <span style="color: var(--dark); font-weight: bold;">1X (Rp.25.000.000)</span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end" style="width: 150px;">
-                                <p style="font-size: 1em; font-weight: bold; color: var(--dark);">
-                                    Rp25.000.000</p>
-                            </div>
-                        </div>
-                        <div class="cart-item-container" style="height: fit-content;">
-                            <img src="{{ asset('/assets/products/f3d01311-b593-499b-9916-09c69d480db1.jpg') }}"
-                                 alt="product-image">
-                            <div class="flex-grow-1">
-                                <p style="color: var(--dark); font-size: 1em; margin-bottom: 0; font-weight: bold">Sapi
-                                    A</p>
-                                <p style="margin-bottom: 0; color: var(--dark-tint); font-size: 0.8em;">Jenis A</p>
-                                <div class="d-flex align-items-center" style="font-size: 0.8em;">
-                                    <span style="color: var(--dark-tint);" class="me-1">Jumlah: </span>
-                                    <span style="color: var(--dark); font-weight: bold;">1X (Rp.25.000.000)</span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end" style="width: 150px;">
-                                <p style="font-size: 1em; font-weight: bold; color: var(--dark);">
-                                    Rp25.000.000</p>
-                            </div>
-                        </div>
+                {{--                <div class="flex-grow-1 d-flex gap-2">--}}
+
+                {{--                    <div class="cart-list-container">--}}
+                {{--                        <div class="cart-item-container mb-3" style="height: fit-content;">--}}
+                {{--                            <img src="{{ asset('/assets/products/f3d01311-b593-499b-9916-09c69d480db1.jpg') }}"--}}
+                {{--                                 alt="product-image">--}}
+                {{--                            <div class="flex-grow-1">--}}
+                {{--                                <p style="color: var(--dark); font-size: 1em; margin-bottom: 0; font-weight: bold">Sapi--}}
+                {{--                                    A</p>--}}
+                {{--                                <p style="margin-bottom: 0; color: var(--dark-tint); font-size: 0.8em;">Jenis A</p>--}}
+                {{--                                <div class="d-flex align-items-center" style="font-size: 0.8em;">--}}
+                {{--                                    <span style="color: var(--dark-tint);" class="me-1">Jumlah: </span>--}}
+                {{--                                    <span style="color: var(--dark); font-weight: bold;">1X (Rp.25.000.000)</span>--}}
+                {{--                                </div>--}}
+                {{--                            </div>--}}
+                {{--                            <div class="d-flex justify-content-end" style="width: 150px;">--}}
+                {{--                                <p style="font-size: 1em; font-weight: bold; color: var(--dark);">--}}
+                {{--                                    Rp25.000.000</p>--}}
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="cart-item-container" style="height: fit-content;">--}}
+                {{--                            <img src="{{ asset('/assets/products/f3d01311-b593-499b-9916-09c69d480db1.jpg') }}"--}}
+                {{--                                 alt="product-image">--}}
+                {{--                            <div class="flex-grow-1">--}}
+                {{--                                <p style="color: var(--dark); font-size: 1em; margin-bottom: 0; font-weight: bold">Sapi--}}
+                {{--                                    A</p>--}}
+                {{--                                <p style="margin-bottom: 0; color: var(--dark-tint); font-size: 0.8em;">Jenis A</p>--}}
+                {{--                                <div class="d-flex align-items-center" style="font-size: 0.8em;">--}}
+                {{--                                    <span style="color: var(--dark-tint);" class="me-1">Jumlah: </span>--}}
+                {{--                                    <span style="color: var(--dark); font-weight: bold;">1X (Rp.25.000.000)</span>--}}
+                {{--                                </div>--}}
+                {{--                            </div>--}}
+                {{--                            <div class="d-flex justify-content-end" style="width: 150px;">--}}
+                {{--                                <p style="font-size: 1em; font-weight: bold; color: var(--dark);">--}}
+                {{--                                    Rp25.000.000</p>--}}
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
+                <div class="flex-grow-1">
+                    <div class="card-content">
+                        <table id="table-data-cart" class="display table w-100">
+                            <thead>
+                            <tr>
+                                <th width="5%" class="text-center">#</th>
+                                <th width="12%" class="text-center middle-header">Gambar</th>
+                                <th>Nama Product</th>
+                                <th width="10%" class="text-center">Qty</th>
+                                <th width="10%" class="text-end">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($data->keranjang as $keranjang)
+                                <tr>
+                                    <td class="text-center middle-header">{{ $loop->index + 1 }}</td>
+                                    <td class="text-center  middle-header">
+                                        <div class="w-100 d-flex justify-content-center">
+                                            <a href="{{ $keranjang->product->gambar }}" target="_blank"
+                                               class="box-product-image">
+                                                <img src="{{ asset($keranjang->product->gambar) }}"
+                                                     alt="product-image"/>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="middle-header">{{ $keranjang->product->nama }}</td>
+                                    <td class="text-center middle-header">{{ $keranjang->qty }}</td>
+                                    <td class="text-center middle-header">{{ number_format($keranjang->total, 0, ',', '.') }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="card-content" style="width: 350px; height: fit-content;">
@@ -182,10 +232,10 @@
                     <div class="d-flex align-items-center justify-content-between mb-1" style="font-size: 1em;">
                         <span style="color: var(--dark-tint); font-size: 0.8em">Total</span>
                         <span id="lbl-total"
-                              style="color: var(--dark); font-weight: bold;">Rp25.000.000</span>
+                              style="color: var(--dark); font-weight: bold;">Rp{{ number_format($data->total, 0, ',', '.') }}</span>
                     </div>
 
-                    @if($data->status === 0 || $data->status === 5)
+                    @if($data->status === 0 || $data->status === 6)
                         <hr class="custom-divider"/>
                         <a href="{{ route('member.order.payment', ['id' => $data->id]) }}" class="btn-action-primary">Bayar</a>
                     @endif
@@ -193,4 +243,25 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script src="{{ asset('/js/helper.js') }}"></script>
+    <script>
+        var table;
+
+        function generateTableKeranjang() {
+            table = $('#table-data-cart').DataTable({
+                "aaSorting": [],
+                "order": [],
+                scrollX: true,
+                responsive: true,
+                paging: true,
+                dom: 'ltrip'
+            });
+        }
+
+        $(document).ready(function () {
+            generateTableKeranjang();
+        })
+    </script>
 @endsection

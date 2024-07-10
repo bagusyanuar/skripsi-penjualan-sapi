@@ -50,12 +50,14 @@
                         @elseif($data->status === 1)
                             <div class="chip-status-warning">menunggu konfirmasi pembayaran</div>
                         @elseif($data->status === 2)
-                            <div class="chip-status-warning">pesanan di proses</div>
+                            <div class="chip-status-warning">pengecekan sapi</div>
                         @elseif($data->status === 3)
-                            <div class="chip-status-info">pesanan di kirim</div>
+                            <div class="chip-status-warning">pesanan di proses</div>
                         @elseif($data->status === 4)
-                            <div class="chip-status-success">selesai</div>
+                            <div class="chip-status-info">pesanan di kirim</div>
                         @elseif($data->status === 5)
+                            <div class="chip-status-success">selesai</div>
+                        @elseif($data->status === 6)
                             <div class="chip-status-danger">Pesanan Di tolak</div>
                         @endif
                     </div>

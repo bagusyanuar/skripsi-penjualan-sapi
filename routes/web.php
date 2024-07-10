@@ -56,5 +56,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'pesanan'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\PesananController::class, 'index'])->name('admin.order');
         Route::match(['post', 'get'],'/{id}/pesanan-baru', [\App\Http\Controllers\Admin\PesananController::class, 'detail_new'])->name('admin.order.new');
+        Route::match(['post', 'get'],'/{id}/pesanan-check', [\App\Http\Controllers\Admin\PesananController::class, 'detail_check'])->name('admin.order.check');
+        Route::match(['post', 'get'],'/{id}/pesanan-proses', [\App\Http\Controllers\Admin\PesananController::class, 'detail_process'])->name('admin.order.process');
+        Route::match(['post', 'get'],'/{id}/pesanan-dikirim', [\App\Http\Controllers\Admin\PesananController::class, 'detail_delivery'])->name('admin.order.delivery');
+        Route::match(['post', 'get'],'/{id}/pesanan-selesai', [\App\Http\Controllers\Admin\PesananController::class, 'detail_finish'])->name('admin.order.finish');
     });
 });

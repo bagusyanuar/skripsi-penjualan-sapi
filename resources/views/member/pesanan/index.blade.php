@@ -103,15 +103,18 @@
                                     status = '<div class="chip-status-warning">menunggu konfirmasi pembayaran</div>';
                                     break;
                                 case  2:
-                                    status = '<div class="chip-status-warning">pesanan di proses</div>';
+                                    status = '<div class="chip-status-warning">pengecekan sapi</div>';
                                     break;
                                 case  3:
-                                    status = '<div class="chip-status-info">pesanan di kirim</div>';
+                                    status = '<div class="chip-status-warning">pesanan di proses</div>';
                                     break;
                                 case  4:
-                                    status = '<div class="chip-status-success">selesai</div>';
+                                    status = '<div class="chip-status-info">pesanan di kirim</div>';
                                     break;
                                 case  5:
+                                    status = '<div class="chip-status-success">selesai</div>';
+                                    break;
+                                case  6:
                                     status = '<div class="chip-status-danger">pesanan di tolak</div>';
                                     break;
                                 default:

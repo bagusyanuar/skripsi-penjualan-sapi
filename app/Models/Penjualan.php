@@ -23,10 +23,11 @@ class Penjualan extends Model
     //status note
     // 0 menunggu pembayaran
     // 1 menunggu konfirmasi pembayaran
-    // 2 pesanan di proses
+    // 2 pengecekan sapi
+    // 3 pesanan di proses
     // 4 pesanan di kirim
-    // 4 selesai
-    // 5 pesanan di tolak
+    // 5 selesai
+    // 6 pesanan di tolak
 
     public function user()
     {
