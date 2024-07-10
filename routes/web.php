@@ -61,4 +61,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::match(['post', 'get'],'/{id}/pesanan-dikirim', [\App\Http\Controllers\Admin\PesananController::class, 'detail_delivery'])->name('admin.order.delivery');
         Route::match(['post', 'get'],'/{id}/pesanan-selesai', [\App\Http\Controllers\Admin\PesananController::class, 'detail_finish'])->name('admin.order.finish');
     });
+
+    Route::group(['prefix' => 'laporan-penjualan'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\LaporanController::class, 'index'])->name('admin.report');
+        Route::get('/cetak', [\App\Http\Controllers\Admin\LaporanController::class, 'pdf'])->name('admin.report.print');
+    });
 });
