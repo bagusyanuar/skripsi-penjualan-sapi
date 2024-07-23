@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Helper\CustomController;
-use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
