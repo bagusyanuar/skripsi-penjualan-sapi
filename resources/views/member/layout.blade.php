@@ -32,8 +32,8 @@
     <div class="nav-link-container">
         <a href="{{ route('member.home') }}" class="nav-link-item {{ request()->is('/') ? 'active' : '' }}">Beranda</a>
         <a href="{{ route('member.product') }}" class="nav-link-item {{ request()->is('product*') ? 'active' : '' }}">Pilihan Sapi</a>
-        <a href="#" class="nav-link-item">Tentang Kami</a>
-        <a href="#" class="nav-link-item">Kontak</a>
+        <a href="{{ route('member.about') }}" class="nav-link-item {{ request()->is('tentang-kami*') ? 'active' : '' }}">Tentang Kami</a>
+        <a href="{{ route('member.contact') }}" class="nav-link-item {{ request()->is('kontak*') ? 'active' : '' }}">Kontak</a>
     </div>
     <div class="nav-menu-container">
         @auth()
@@ -72,8 +72,8 @@
         <p style="color: var(--dark); font-size: 1em; font-weight: 500; letter-spacing: 2px">HELI FARM</p>
         <a href="{{ route('member.home') }}" class="footer-link mb-1">BERANDA</a>
         <a href="{{ route('member.product') }}" class="footer-link mb-1">PRODUCT</a>
-        <a href="#" class="footer-link mb-1">TENTANG KAMI</a>
-        <a href="#" class="footer-link">KONTAK</a>
+        <a href="{{ route('member.about') }}" class="footer-link mb-1">TENTANG KAMI</a>
+        <a href="{{ route('member.contact') }}" class="footer-link">KONTAK</a>
     </div>
     <div class="col-3">
         <p style="color: var(--dark); font-size: 1em; font-weight: 500; letter-spacing: 2px">HUBUNGI KAMI</p>
