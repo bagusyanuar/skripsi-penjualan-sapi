@@ -18,9 +18,14 @@ class Penjualan extends Model
         'total',
         'tanggal_check',
         'status',
-        'alamat'
+        'alamat',
+        'dp',
+        'lunas'
     ];
 
+    protected $casts = [
+        'lunas' => 'boolean'
+    ];
     //status note
     // 0 menunggu pembayaran
     // 1 menunggu konfirmasi pembayaran
@@ -29,6 +34,7 @@ class Penjualan extends Model
     // 4 pesanan di kirim
     // 5 selesai
     // 6 pesanan di tolak
+    // 7 menunggu konfirmasi pelunasan
 
     public function user()
     {

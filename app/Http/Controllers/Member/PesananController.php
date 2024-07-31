@@ -67,7 +67,8 @@ class PesananController extends CustomController
                 'bank' => $this->postField('bank'),
                 'atas_nama' => $this->postField('name'),
                 'status' => 0,
-                'deskripsi' => '-'
+                'deskripsi' => '-',
+                'deskripsi_pembayaran' => $this->postField('desc')
             ];
 
             if ($this->request->hasFile('file')) {
@@ -83,9 +84,18 @@ class PesananController extends CustomController
                 return $this->jsonErrorResponse('Mohon melampirkan bukti transfer...');
             }
             Pembayaran::create($data_request);
-            $order->update([
-                'status' => 1
-            ]);
+
+            if ($order->status === 4) {
+                $order->update([
+                    'status' => 7,
+                ]);
+            }else {
+                $order->update([
+                    'status' => 1,
+                    'dp' => $this->postField('dp')
+                ]);
+            }
+
             DB::commit();
             return $this->jsonSuccessResponse('success', 'Berhasil upload bukti transfer...');
         }catch (\Exception $e) {

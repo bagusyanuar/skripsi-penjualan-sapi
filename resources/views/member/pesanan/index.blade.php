@@ -37,7 +37,10 @@
                         <th width="10%" class="text-center">Tanggal</th>
                         <th>No. Penjualan</th>
                         <th width="10%" class="text-end">Total</th>
+                        <th width="10%" class="text-end">DP</th>
+                        <th width="10%" class="text-end">Kekurangan</th>
                         <th width="20%" class="text-center">Status</th>
+                        <th width="10%" class="text-center">Lunas</th>
                         <th width="8%" class="text-center"></th>
                     </tr>
                     </thead>
@@ -90,6 +93,21 @@
                         }
                     },
                     {
+                        data: 'dp',
+                        className: 'middle-header text-end',
+                        render: function (data) {
+                            return data.toLocaleString('id-ID');
+                        }
+                    },
+                    {
+                        data: null,
+                        className: 'middle-header text-end',
+                        render: function (data) {
+                            let value = data['total'] - data['dp'];
+                            return value.toLocaleString('id-ID');
+                        }
+                    },
+                    {
                         data: 'status',
                         orderable: false,
                         className: 'middle-header text-center',
@@ -117,10 +135,24 @@
                                 case  6:
                                     status = '<div class="chip-status-danger">pesanan di tolak</div>';
                                     break;
+                                case  7:
+                                    status = '<div class="chip-status-warning">menunggu konfirmasi pelunasan</div>';
+                                    break;
                                 default:
                                     break;
                             }
                             return status;
+                        }
+                    },
+                    {
+                        data: 'lunas',
+                        orderable: false,
+                        className: 'middle-header text-center',
+                        render: function (data) {
+                            if (data) {
+                                return 'Lunas';
+                            }
+                            return  'Belum Lunas'
                         }
                     },
                     {

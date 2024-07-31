@@ -84,6 +84,16 @@
                     <div class="me-2 w-100 text-end" style="width: 80%">Total :</div>
                     <div class="text-end" style="width: 20%">Rp.{{ number_format($data->total, 0, ',', '.') }}</div>
                 </div>
+                <div class="w-100 d-flex justify-content-end"
+                     style="font-size: 0.8em; font-weight: bold; color: var(--dark);">
+                    <div class="me-2 w-100 text-end" style="width: 80%">DP :</div>
+                    <div class="text-end" style="width: 20%">Rp.{{ number_format($data->dp, 0, ',', '.') }}</div>
+                </div>
+                <div class="w-100 d-flex justify-content-end"
+                     style="font-size: 0.8em; font-weight: bold; color: var(--dark);">
+                    <div class="me-2 w-100 text-end" style="width: 80%">Kekurangan :</div>
+                    <div class="text-end" style="width: 20%">Rp.{{ number_format(($data->total - $data->dp), 0, ',', '.') }}</div>
+                </div>
             </div>
             <div class="col-3">
                 <div class="w-100"

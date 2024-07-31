@@ -63,6 +63,8 @@
                                     <div class="chip-status-success">selesai</div>
                                 @elseif($data->status === 6)
                                     <div class="chip-status-danger">Pesanan Di tolak</div>
+                                @elseif($data->status === 7)
+                                    <div class="chip-status-warning">menunggu konfirmasi pelunasan</div>
                                 @endif
                             </div>
                         </div>
@@ -136,14 +138,14 @@
                         </div>
                         <div class="progress-connector-wrapper">
                             <div
-                                class="progress-connector {{ ($data->status !== 6 && $data->status > 4) ? 'active' : '' }}"></div>
+                                class="progress-connector {{ ($data->status !== 6 && $data->status > 4 && $data->status !== 7) ? 'active' : '' }}"></div>
                         </div>
                         <div class="progress-item-wrapper">
-                            <div class="progress-item {{ ($data->status !== 6 && $data->status > 4) ? 'active' : '' }}">
+                            <div class="progress-item {{ ($data->status !== 6 && $data->status > 4 && $data->status !== 7) ? 'active' : '' }}">
                                 <i class='bx bx-check'></i>
                             </div>
                             <div
-                                class="progress-item-text {{ ($data->status !== 6 && $data->status > 4) ? 'active' : '' }}">
+                                class="progress-item-text {{ ($data->status !== 6 && $data->status > 4 && $data->status !== 7) ? 'active' : '' }}">
                                 Selesai
                             </div>
                         </div>
@@ -234,10 +236,26 @@
                         <span id="lbl-total"
                               style="color: var(--dark); font-weight: bold;">Rp{{ number_format($data->total, 0, ',', '.') }}</span>
                     </div>
+                    <div class="d-flex align-items-center justify-content-between mb-1" style="font-size: 1em;">
+                        <span style="color: var(--dark-tint); font-size: 0.8em">DP</span>
+                        <span id="lbl-dp"
+                              style="color: var(--dark); font-weight: bold;">Rp{{ number_format($data->dp, 0, ',', '.') }}</span>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-1" style="font-size: 1em;">
+                        <span style="color: var(--dark-tint); font-size: 0.8em">Kekurangan</span>
+                        <span id="lbl-rest"
+                              style="color: var(--dark); font-weight: bold;">Rp{{ number_format(($data->total - $data->dp), 0, ',', '.') }}</span>
+                    </div>
 
-                    @if($data->status === 0 || $data->status === 6)
+                    @if($data->status === 0 || $data->status === 6 || $data->status === 4)
                         <hr class="custom-divider"/>
-                        <a href="{{ route('member.order.payment', ['id' => $data->id]) }}" class="btn-action-primary">Bayar</a>
+                        @if($data->status === 4)
+                            <a href="{{ route('member.order.payment', ['id' => $data->id]) }}"
+                               class="btn-action-primary">Pelunasan</a>
+                        @else
+                            <a href="{{ route('member.order.payment', ['id' => $data->id]) }}"
+                               class="btn-action-primary">Bayar</a>
+                        @endif
                     @endif
                 </div>
             </div>

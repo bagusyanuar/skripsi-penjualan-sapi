@@ -44,8 +44,9 @@ class PesananController extends CustomController
             }
 
             if ($status === '4') {
+                $range = [4, 7];
                 $data = Penjualan::with(['user.customer'])
-                    ->where('status', '=', 4)
+                    ->whereIn('status', $range)
                     ->orderBy('updated_at', 'ASC')
                     ->get();
             }
@@ -96,6 +97,7 @@ class PesananController extends CustomController
             'data' => $data
         ]);
     }
+
     public function detail_process($id)
     {
         if ($this->request->ajax()) {
@@ -240,18 +242,43 @@ class PesananController extends CustomController
     private function submit_to_finish($id)
     {
         try {
+            DB::beginTransaction();
+            $status = $this->postField('status');
+            $reason = $this->postField('reason');
+
             $order = Penjualan::with([])
                 ->where('id', '=', $id)
                 ->first();
             if (!$order) {
                 return $this->jsonNotFoundResponse('data tidak ditemukan...');
             }
+
             $data_request_order = [
                 'status' => 5,
             ];
+            /** @var Model $payment */
+            $payment = $order->pembayaran_status;
+            $data_request_order = [
+                'status' => 4,
+            ];
+            if ($status === '1') {
+                $data_request_order['status'] = 5;
+            }
+
+            $data_request_payment = [
+                'status' => 2,
+                'deskripsi' => $reason
+            ];
+            if ($status === '1') {
+                $data_request_payment['status'] = 1;
+                $data_request_payment['deskripsi'] = '-';
+            }
+            $payment->update($data_request_payment);
             $order->update($data_request_order);
+            DB::commit();
             return $this->jsonSuccessResponse('success', 'Berhasil merubah data product...');
         } catch (\Exception $e) {
+            DB::rollBack();
             return $this->jsonErrorResponse($e->getMessage());
         }
     }

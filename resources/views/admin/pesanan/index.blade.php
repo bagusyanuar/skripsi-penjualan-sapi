@@ -64,6 +64,7 @@
                         <th width="18%">No. Penjualan</th>
                         <th>Nama Customer</th>
                         <th width="10%" class="text-end">Total</th>
+                        <th width="10%" class="text-end">DP</th>
                         <th width="8%" class="text-center"></th>
                     </tr>
                     </thead>
@@ -191,6 +192,13 @@
                     },
                     {
                         data: 'total',
+                        className: 'middle-header text-end',
+                        render: function (data) {
+                            return data.toLocaleString('id-ID');
+                        }
+                    },
+                    {
+                        data: 'dp',
                         className: 'middle-header text-end',
                         render: function (data) {
                             return data.toLocaleString('id-ID');

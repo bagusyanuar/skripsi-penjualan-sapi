@@ -71,22 +71,41 @@
                     </div>
                 </div>
                 <div class="card-content" style="width: 400px; height: fit-content;">
-                    <p style="font-size: 1em; font-weight: bold; color: var(--dark);">Pembayaran</p>
+                    @if($data->status !== 4)
+                        <p style="font-size: 1em; font-weight: bold; color: var(--dark);">Pembayaran</p>
+                    @else
+                        <p style="font-size: 1em; font-weight: bold; color: var(--dark);">Pelunasan</p>
+                    @endif
                     <hr class="custom-divider"/>
-                    <div class="d-flex align-items-center justify-content-between mb-1" style="font-size: 1em;">
-                        <span style="color: var(--dark); font-size: 0.8em">Total</span>
-                        <span id="lbl-total"
-                              style="color: var(--dark); font-weight: bold;">Rp{{ number_format($data->total, 0, ',', '.') }}</span>
-                    </div>
+                    @if($data->status !== 4)
+                        <div class="d-flex align-items-center justify-content-between mb-1" style="font-size: 1em;">
+                            <span style="color: var(--dark); font-size: 0.8em">Total</span>
+                            <span id="lbl-total"
+                                  style="color: var(--dark); font-weight: bold;">Rp{{ number_format($data->total, 0, ',', '.') }}</span>
+                        </div>
+                    @else
+                        <div class="d-flex align-items-center justify-content-between mb-1" style="font-size: 1em;">
+                            <span style="color: var(--dark); font-size: 0.8em">Kekurangan</span>
+                            <span id="lbl-total"
+                                  style="color: var(--dark); font-weight: bold;">Rp{{ number_format(($data->total - $data->dp), 0, ',', '.') }}</span>
+                        </div>
+                    @endif
                     <hr class="custom-divider"/>
                     <form method="post" id="form-data">
                         @csrf
-{{--                        <div class="w-100 mb-2">--}}
-{{--                            <label for="dp" class="form-label input-label">DP</label>--}}
-{{--                            <input type="number" value="0" placeholder="product price" class="text-input" id="dp"--}}
-{{--                                   name="dp">--}}
-{{--                            <span id="dp-error" class="input-label-error d-none"></span>--}}
-{{--                        </div>--}}
+                        @if($data->status === 4)
+                            <input type="hidden" value="dp" name="desc">
+                        @else
+                            <input type="hidden" value="pelunasan" name="desc">
+                        @endif
+                        @if($data->status !== 4)
+                            <div class="w-100 mb-2">
+                                <label for="dp" class="form-label input-label">DP</label>
+                                <input type="number" value="0" placeholder="product price" class="text-input" id="dp"
+                                       name="dp">
+                                <span id="dp-error" class="input-label-error d-none"></span>
+                            </div>
+                        @endif
                         <div class="w-100 mb-2">
                             <label for="bank" class="form-label input-label">Bank</label>
                             <select id="bank" name="bank" class="text-input">

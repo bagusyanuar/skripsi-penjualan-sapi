@@ -67,12 +67,72 @@
             <div class="me-2 w-100 text-end" style="width: 80%">Total :</div>
             <div class="text-end" style="width: 20%">Rp.{{ number_format($data->total, 0, ',', '.') }}</div>
         </div>
+        <div class="w-100 d-flex justify-content-end" style="font-size: 0.8em; font-weight: bold; color: var(--dark);">
+            <div class="me-2 w-100 text-end" style="width: 80%">DP :</div>
+            <div class="text-end" style="width: 20%">Rp.{{ number_format($data->dp, 0, ',', '.') }}</div>
+        </div>
+        <div class="w-100 d-flex justify-content-end" style="font-size: 0.8em; font-weight: bold; color: var(--dark);">
+            <div class="me-2 w-100 text-end" style="width: 80%">Kekurangan :</div>
+            <div class="text-end" style="width: 20%">Rp.{{ number_format(($data->total - $data->dp), 0, ',', '.') }}</div>
+        </div>
+
+        <hr class="custom-divider"/>
+        <p style="font-size: 0.8em; font-weight: 600; color: var(--dark);">Konfirmasi Pelunasan</p>
+        <div class="row">
+            <div class="col-8">
+                <div class="w-100">
+                    <div class="mt-2 mb-1">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input payment-status" type="radio" name="payment-status" id="accept"
+                                   value="1" checked>
+                            <label class="form-check-label" for="accept" style="font-size: 0.8em; color: var(--dark);">
+                                Terima
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input payment-status" type="radio" name="payment-status" id="deny"
+                                   value="0">
+                            <label class="form-check-label" for="deny" style="font-size: 0.8em; color: var(--dark);">
+                                Tolak
+                            </label>
+                        </div>
+                    </div>
+                    <div id="panel-reason" class="d-none">
+                        <div class="w-100 mb-1">
+                            <label for="reason" class="form-label input-label">Alasan Penolakan</label>
+                            <textarea rows="3" placeholder="contoh: bukti tidak valid" class="text-input"
+                                      id="reason"
+                                      name="reason"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="w-100"
+                     style="border: 1px solid var(--dark-tint); border-radius: 8px; padding: 0.5rem 0.5rem;">
+                    <p style="font-size: 0.8em; font-weight: 600; color: var(--dark);">Ringkasan Pelunasan</p>
+                    <hr class="custom-divider"/>
+                    <div class="w-100 mb-1" style="font-size: 0.8em; font-weight: 600; color: var(--dark);">
+                        {{ $data->pembayaran_status->bank }} ({{ $data->pembayaran_status->atas_nama }})
+                    </div>
+                    <img src="{{ $data->pembayaran_status->bukti }}" alt="img-transfer"
+                         style="width: 100%; height: auto; object-fit: cover; object-position: center center;">
+                </div>
+            </div>
+        </div>
+
         <hr class="custom-divider"/>
         <div class="w-100 justify-content-end d-flex">
             <a href="#" class="btn-add" id="btn-confirm">
-                <span>Pesanan Selesai</span>
+                <span>Konfirmasi Pesanan</span>
             </a>
         </div>
+{{--        <hr class="custom-divider"/>--}}
+{{--        <div class="w-100 justify-content-end d-flex">--}}
+{{--            <a href="#" class="btn-add" id="btn-confirm">--}}
+{{--                <span>Pesanan Selesai</span>--}}
+{{--            </a>--}}
+{{--        </div>--}}
 
     </div>
 
@@ -155,6 +215,21 @@
             });
         }
 
+        function eventChangeConfirmation() {
+            $('.payment-status').on('change', function () {
+                changeConfirmationHandler();
+            })
+        }
+
+        function changeConfirmationHandler() {
+            let val = $('input[name=payment-status]:checked').val();
+            let elPanelReason = $('#panel-reason');
+            if (val === '0') {
+                elPanelReason.removeClass('d-none');
+            } else {
+                elPanelReason.addClass('d-none');
+            }
+        }
 
         function eventSaveConfirmation() {
             $('#btn-confirm').on('click', function (e) {
@@ -167,10 +242,12 @@
 
         async function saveConfirmationHandler() {
             try {
-                await $.post(path);
+                let status = $('input[name=payment-status]:checked').val();
+                let reason = $('#reason').val();
+                await $.post(path, {status, reason});
                 Swal.fire({
                     title: 'Success',
-                    text: 'Berhasil melakukan konfirmasi...',
+                    text: 'Berhasil melakukan konfirmasi data...',
                     icon: 'success',
                     timer: 700
                 }).then(() => {
@@ -185,6 +262,7 @@
         $(document).ready(function () {
             generateTableKeranjang();
             eventSaveConfirmation();
+            eventChangeConfirmation();
         })
     </script>
 @endsection
