@@ -35,11 +35,25 @@
         .middle-header {
             vertical-align: middle !important;
         }
+
+        .s-flex {
+            display: flex;
+            align-items: center;
+        }
+
     </style>
 </head>
 <body>
-<div class="text-center f-bold report-title">Laporan Penjualan</div>
-<div class="text-center f-small">Periode Laporan {{ $start }} - {{ $end }}</div>
+<div class="row">
+    <div class="col-xs-2">
+        <img src="{{ public_path('/assets/image/logo.png') }}" height="60">
+    </div>
+    <div class="col-xs-7">
+        <div class="text-center f-bold report-title">Laporan Penjualan</div>
+        <div class="text-center f-small">Periode Laporan {{ $start }} - {{ $end }}</div>
+    </div>
+    <div class="col-xs-2"></div>
+</div>
 <hr/>
 <table id="my-table" class="table display f-small">
     <thead>
@@ -72,6 +86,18 @@
     <div class="col-xs-4">
         <div class="text-right">
             <p class="text-right f-bold">Total Pendapatan : {{ number_format($data->sum('total'), 0, ',', '.') }}</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-8"></div>
+    <div class="col-xs-3">
+        <div class="text-center">
+            <p class="text-center">{{ \Carbon\Carbon::now()->format('Y-m-d') }}</p>
+            <br>
+            <br>
+            <br>
+            <p class="text-center">Admin</p>
         </div>
     </div>
 </div>

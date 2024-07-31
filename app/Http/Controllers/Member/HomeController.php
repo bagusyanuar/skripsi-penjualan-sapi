@@ -17,6 +17,7 @@ class HomeController extends CustomController
     public function index()
     {
         $products = Product::with([])
+            ->where('qty', '>', 0)
             ->orderBy('created_at', 'DESC')
             ->limit(5)
             ->offset(0)

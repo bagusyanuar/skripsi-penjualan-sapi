@@ -204,7 +204,7 @@
                             let id = data['id'];
                             let urlDetail = path + '/' + id + '/pesanan-baru';
                             return '<div class="w-100 d-flex justify-content-center align-items-center gap-1">' +
-                                '<a style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
+                                '<a data-bs-toggle="tooltip" title="Detail" style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
                                 '</div>';
                         }
                     }
@@ -256,7 +256,7 @@
                             let id = data['id'];
                             let urlDetail = path + '/' + id + '/pesanan-check';
                             return '<div class="w-100 d-flex justify-content-center align-items-center gap-1">' +
-                                '<a style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
+                                '<a data-bs-toggle="tooltip" title="Detail" style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
                                 '</div>';
                         }
                     }
@@ -309,7 +309,7 @@
                             let id = data['id'];
                             let urlDetail = path + '/' + id + '/pesanan-proses';
                             return '<div class="w-100 d-flex justify-content-center align-items-center gap-1">' +
-                                '<a style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
+                                '<a data-bs-toggle="tooltip" title="Detail" style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
                                 '</div>';
                         }
                     }
@@ -362,7 +362,7 @@
                             let id = data['id'];
                             let urlDetail = path + '/' + id + '/pesanan-dikirim';
                             return '<div class="w-100 d-flex justify-content-center align-items-center gap-1">' +
-                                '<a style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
+                                '<a data-bs-toggle="tooltip" title="Detail" style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
                                 '</div>';
                         }
                     }
@@ -415,7 +415,7 @@
                             let id = data['id'];
                             let urlDetail = path + '/' + id + '/pesanan-selesai';
                             return '<div class="w-100 d-flex justify-content-center align-items-center gap-1">' +
-                                '<a style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
+                                '<a data-bs-toggle="tooltip" title="Detail" style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
                                 '</div>';
                         }
                     }

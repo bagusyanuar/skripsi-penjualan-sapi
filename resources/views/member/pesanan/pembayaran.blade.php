@@ -81,6 +81,12 @@
                     <hr class="custom-divider"/>
                     <form method="post" id="form-data">
                         @csrf
+{{--                        <div class="w-100 mb-2">--}}
+{{--                            <label for="dp" class="form-label input-label">DP</label>--}}
+{{--                            <input type="number" value="0" placeholder="product price" class="text-input" id="dp"--}}
+{{--                                   name="dp">--}}
+{{--                            <span id="dp-error" class="input-label-error d-none"></span>--}}
+{{--                        </div>--}}
                         <div class="w-100 mb-2">
                             <label for="bank" class="form-label input-label">Bank</label>
                             <select id="bank" name="bank" class="text-input">

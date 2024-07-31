@@ -118,7 +118,8 @@ class CartController extends CustomController
                 'no_penjualan' => $transactionRef,
                 'total' => $total,
                 'status' => 0,
-                'tanggal_check' => null
+                'tanggal_check' => null,
+                'alamat' => $this->postField('address')
             ];
 
             if ($is_pcb === '1') {
@@ -137,7 +138,7 @@ class CartController extends CustomController
             DB::commit();
             return redirect()->back()->with('success', 'berhasil melakukan pemesanan...')->with('id', $transID);
         } catch (\Exception $e) {
-            return redirect()->back()->with('failed', 'terjadi kesalahan server...');
+            return redirect()->back()->with('failed', $e->getMessage());
         }
     }
 }

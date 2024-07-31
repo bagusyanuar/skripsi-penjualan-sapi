@@ -17,7 +17,8 @@ class Penjualan extends Model
         'no_penjualan',
         'total',
         'tanggal_check',
-        'status'
+        'status',
+        'alamat'
     ];
 
     //status note

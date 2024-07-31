@@ -66,7 +66,7 @@
                                 @endif
                             </div>
                         </div>
-                        @if($data->status === 5)
+                        @if($data->status === 6)
                             <div class="d-flex align-items-center mb-1">
                                 <span style="" class="me-2">Alasan Penolakan :</span>
                                 <span style="font-weight: 600;">{{ $data->pembayaran_status->deskripsi }}</span>

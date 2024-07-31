@@ -92,7 +92,7 @@
                                 <label for="pcb_date" class="form-label input-label">Tanggal PCB</label>
                                 <input type="date" class="text-input"
                                        id="pcb_date"
-                                       name="pcb_date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"/>
+                                       name="pcb_date" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"/>
                             </div>
                         </div>
                     </div>
@@ -157,6 +157,8 @@
                 $('#form-data').submit();
             })
         }
+
+
 
         $(document).ready(function () {
             eventChangePCB();

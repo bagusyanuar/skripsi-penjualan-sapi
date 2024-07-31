@@ -21,7 +21,7 @@ class ProductController extends CustomController
             try {
                 $q = $this->request->query->get('param');
                 $c = $this->request->query->get('category');
-                $query = Product::with([]);
+                $query = Product::with([])->where('qty', '>', 0);
                 if ($c !== 'all' && $c !== '') {
                     $query->where('kategori_id', '=', $c);
                 }

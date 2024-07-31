@@ -105,7 +105,7 @@ class ProductController extends CustomController
                     'data' => $errors
                 ], 400);
             }
-            $data_request = $this->getDataRequest();
+            $data_request = $this->getDataRequest(true);
             $data->update($data_request);
             return $this->jsonSuccessResponse('success', 'Berhasil merubah data product...');
         } catch (\Exception $e) {
@@ -113,7 +113,7 @@ class ProductController extends CustomController
         }
     }
 
-    private function getDataRequest()
+    private function getDataRequest($edit = false)
     {
         $data_request = [
             'kategori_id' => $this->postField('category'),
@@ -121,8 +121,13 @@ class ProductController extends CustomController
             'harga' => $this->postField('price'),
             'berat' => $this->postField('weight'),
             'umur' => $this->postField('age'),
-            'deskripsi' => $this->postField('description')
+            'deskripsi' => $this->postField('description'),
+
         ];
+
+        if ($edit === false) {
+            $data_request['qty'] = 1;
+        }
 
         if ($this->request->hasFile('file')) {
             $file = $this->request->file('file');

@@ -16,7 +16,8 @@ class Product extends Model
         'harga',
         'umur',
         'berat',
-        'deskripsi'
+        'deskripsi',
+        'qty'
     ];
 
     public function kategori()
